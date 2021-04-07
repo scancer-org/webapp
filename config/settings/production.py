@@ -63,7 +63,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # # STATIC
 # # ------------------------
 # STATICFILES_STORAGE = "scancer.utils.storages.StaticRootGoogleCloudStorage"
-# COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
+COLLECTFAST_STRATEGY = "collectfast.strategies.filesystem.FileSystemStrategy"
 # STATIC_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/static/"
 # # MEDIA
 # # ------------------------------------------------------------------------------
@@ -115,10 +115,10 @@ ANYMAIL = {}
 # ------------------------------------------------------------------------------
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
 COMPRESS_ENABLED = env.bool("COMPRESS_ENABLED", default=True)
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_STORAGE
-COMPRESS_STORAGE = STATICFILES_STORAGE
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
-COMPRESS_URL = STATIC_URL
+# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_STORAGE
+# COMPRESS_STORAGE = STATICFILES_STORAGE
+# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
+# COMPRESS_URL = STATIC_URL
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_FILTERS
 COMPRESS_FILTERS = {
     "css": [
