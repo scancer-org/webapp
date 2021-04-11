@@ -77,7 +77,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "scancer.users.apps.UsersConfig",
-    # Your stuff: custom apps go here
+    "scancer.mnist.apps.MnistConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
