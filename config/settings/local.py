@@ -29,8 +29,6 @@ CACHES = {
 EMAIL_HOST = "localhost"
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 EMAIL_PORT = 1025
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
