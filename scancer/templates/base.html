@@ -1,11 +1,13 @@
 {% load static i18n compress%}<!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Webapp that uses computer vision to assist with early detection of breast cancer">
     <meta name="author" content="Harish Narayanan and Daniel Hen">
 
+    <title>{% block title %}Scancer{% endblock title %}</title>
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
     {% block css %}
@@ -16,118 +18,166 @@
 
     {% block inline_css %}
     {% endblock inline_css %}
-
-    <title>{% block title %}Scancer{% endblock title %}</title>
   </head>
   <body>
+    {% block content %}
+    {% block header %}
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'home'%}">scancer</a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% if request.user.is_authenticated %}
+      <div class="text-end me-3 my-1">
+        <a href="{% url 'users:detail' request.user.username  %}" class="btn btn-sm btn-outline-light me-2">{% trans "Preferences" %}</a>
+        <a href="{% url 'account_logout' %}" class="btn btn-sm btn-outline-danger">{% trans "Sign Out" %}</a>
+      </div>
+      {% else%}
+      <div class="text-end me-3 my-1">
+        <a href="{% url 'account_login' %}" class="btn btn-sm btn-outline-light me-2">{% trans "Sign In" %}</a>
+        <a href="{% url 'account_signup' %}" class="btn btn-sm btn-primary">{% trans "Sign Up" %}</a>
+      </div>
+      {% endif %}
+    </header>
+    {% endblock header %}
+
+    {% block messages %}
     {% if messages %}
     {% for message in messages %}
-    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-          {% endfor %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
     {% endif %}
+    {% endblock messages %}
 
-    <div class="container">
-      <div class="row">
-        <div class="p-3 bg-white col-3">
-          <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-            <span class="fs-5 fw-semibold">Scancer</span>
-          </a>
-          <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#web-collapse" aria-expanded="true">
-                Web
-              </button>
-              <div class="collapse show" id="web-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="{% url 'home' %}" class="link-dark rounded">Home</a></li>
-                  <li><a href="{% url 'about' %}" class="link-dark rounded">About</a></li>
-                </ul>
-              </div>
+    <div class="row">
+      {% block navigation %}
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">
+                <span data-feather="home"></span>
+                Patients
+              </a>
             </li>
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                Dashboard
-              </button>
-              <div class="collapse" id="dashboard-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">Overview</a></li>
-                  <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                  <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                  <li><a href="#" class="link-dark rounded">Annually</a></li>
-                </ul>
-              </div>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Examinations</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+              <span data-feather="plus-circle"></span>
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Manual Exams
+              </a>
             </li>
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                Orders
-              </button>
-              <div class="collapse" id="orders-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">New</a></li>
-                  <li><a href="#" class="link-dark rounded">Processed</a></li>
-                  <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                  <li><a href="#" class="link-dark rounded">Returned</a></li>
-                </ul>
-              </div>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Mammograms
+              </a>
             </li>
-            <li class="border-top my-3"></li>
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                Account
-              </button>
-              <div class="collapse" id="account-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">New...</a></li>
-                  <li><a href="#" class="link-dark rounded">Profile</a></li>
-                  <li><a href="#" class="link-dark rounded">Settings</a></li>
-                  <li><a href="{% url 'account_logout' %}" class="link-dark rounded">Sign out</a></li>
-                </ul>
-              </div>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Lymph Node Biopsies
+              </a>
             </li>
           </ul>
         </div>
-        <div class="col">
-          {% block header %}
-          <h1 class="mt-4">Get started with Bootstrap</h1>
-          {% endblock header %}
+      </nav>
+      {% endblock navigation %}
 
-          {% block content %}
-          {% endblock content %}
-
-          {% block footer %}
-          <footer class="pt-5 my-5 text-muted border-top">
-            Created by Harish Narayanan and Daniel Hen &middot; &copy; 2021
-          </footer>
-          {% endblock footer %}
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      {% block main %}
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">All Patients</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            Highest Risk
+          </button>
         </div>
       </div>
 
-    {% block javascript %}
-    {% compress js %}
-    <script defer src="{% static 'js/vendors.js' %}"></script>
-    {% endcompress %}
-    {% compress js %}
-    <script defer src="{% static 'js/project.js' %}"></script>
-    {% endcompress %}
-    {% endblock javascript %}
+        <div class="table-responsive mt-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Sex</th>
+                <th>Age</th>
+                <th>Last Examination</th>
+                <th>Upcoming Examination</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1001</td>
+                <td>Female</td>
+                <td>49 Years 3 Months</td>
+                <td>12/10/2020: <a href="#">Mammogram</a></td>
+                <td>24/10/2020: <a href="#">Biopsy</a></td>
+              </tr>
+              <tr>
+                <td>1001</td>
+                <td>Female</td>
+                <td>49 Years 3 Months</td>
+                <td>12/10/2020: <a href="#">Mammogram</a></td>
+                <td>24/10/2020: <a href="#">Biopsy</a></td>
+              </tr>
+              <tr>
+                <td>1001</td>
+                <td>Female</td>
+                <td>49 Years 3 Months</td>
+                <td>12/10/2020: <a href="#">Mammogram</a></td>
+                <td>24/10/2020: <a href="#">Biopsy</a></td>
+              </tr>
+              <tr>
+                <td>1001</td>
+                <td>Female</td>
+                <td>49 Years 3 Months</td>
+                <td>12/10/2020: <a href="#">Mammogram</a></td>
+                <td>24/10/2020: <a href="#">Biopsy</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {% endblock main %}
+      </main>
 
-    {% block inline_javascript %}
-    {% endblock inline_javascript %}
+    </div>
 
-    {% block modal %}{% endblock modal %}
+</div>
+{% endblock content %}
 
-  </body>
+{% block javascript %}
+{% compress js %}
+<script defer src="{% static 'js/vendors.js' %}"></script>
+{% endcompress %}
+{% compress js %}
+<script defer src="{% static 'js/project.js' %}"></script>
+{% endcompress %}
+{% endblock javascript %}
+
+{% block inline_javascript %}
+{% endblock inline_javascript %}
+
+{% block modal %}{% endblock modal %}
+</body>
 </html>
 
-
-
 {% comment %}
-    {% if request.user.is_authenticated %}
-    <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
-    <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
-    {% else %}
-    <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-    <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
-    {% endif %}
+  {% block footer %}
+  <footer class="pt-5 my-5 text-muted border-top">
+    Created by <a href="">Harish Narayanan</a> and <a href="">Daniel Hen</a> &middot; &copy; 2021
+  </footer>
+  {% endblock footer %}
 {% endcomment %}
