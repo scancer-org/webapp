@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}List of Patients{% endblock %}
+
+{% block main %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">All Patients</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+      <span data-feather="calendar"></span>
+      Highest Risk
+    </button>
+  </div>
+</div>
+
+<div class="table-responsive mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Sex</th>
+        <th>Age</th>
+        <th>Last Examination</th>
+        <th>Upcoming Examination</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1001</td>
+        <td>Female</td>
+        <td>49 Years 3 Months</td>
+        <td>12/10/2020: <a href="#">Mammogram</a></td>
+        <td>24/10/2020: <a href="#">Biopsy</a></td>
+      </tr>
+      <tr>
+        <td>1001</td>
+        <td>Female</td>
+        <td>49 Years 3 Months</td>
+        <td>12/10/2020: <a href="#">Mammogram</a></td>
+        <td>24/10/2020: <a href="#">Biopsy</a></td>
+      </tr>
+      <tr>
+        <td>1001</td>
+        <td>Female</td>
+        <td>49 Years 3 Months</td>
+        <td>12/10/2020: <a href="#">Mammogram</a></td>
+        <td>24/10/2020: <a href="#">Biopsy</a></td>
+      </tr>
+      <tr>
+        <td>1001</td>
+        <td>Female</td>
+        <td>49 Years 3 Months</td>
+        <td>12/10/2020: <a href="#">Mammogram</a></td>
+        <td>24/10/2020: <a href="#">Biopsy</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock main %}
