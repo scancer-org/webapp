@@ -10,11 +10,7 @@ from django.urls import reverse
 from scancer.users.forms import UserChangeForm
 from scancer.users.models import User
 from scancer.users.tests.factories import UserFactory
-from scancer.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from scancer.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
