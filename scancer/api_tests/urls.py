@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import MNISTImageClassifierView, DeepLabv3ImageSegmenterView
+from .views import DeepLabv3ImageSegmenterView, MNISTImageClassifierView
 
 app_name = "api_tests"
 urlpatterns = [

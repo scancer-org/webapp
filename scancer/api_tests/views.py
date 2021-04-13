@@ -1,8 +1,8 @@
 import requests
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
 
 from .forms import ImageUploadForm
 
@@ -37,12 +37,15 @@ class DeepLabv3ImageSegmenterView(LoginRequiredMixin, FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Test of the DeepLabv3 (ResNet 101 backbone) Image Segmenter API"
+        context[
+            "title"
+        ] = "Test of the DeepLabv3 (ResNet 101 backbone) Image Segmenter API"
         return context
 
     def form_valid(self, form):
         r = requests.put(
-            "http://localhost:8080/predictions/deeplabv3_resnet_101", data=form.cleaned_data["image"]
+            "http://localhost:8080/predictions/deeplabv3_resnet_101",
+            data=form.cleaned_data["image"],
         )
         segments = r.text
         messages.add_message(
