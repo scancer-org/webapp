@@ -1,7 +1,6 @@
 from django.urls import path
 
-from .views import PCamImageClassifierView, DeepLabv3ImageSegmenterView
-
+from .views import DeepLabv3ImageSegmenterView, PCamImageClassifierView
 
 app_name = "api_tests"
 urlpatterns = [
