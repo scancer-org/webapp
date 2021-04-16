@@ -7,25 +7,25 @@ from django.urls import reverse_lazy
 from .forms import ImageUploadForm
 
 
-class MNISTImageClassifierView(LoginRequiredMixin, FormView):
+class PCamImageClassifierView(LoginRequiredMixin, FormView):
     template_name = "api_tests/image_upload.html"
     form_class = ImageUploadForm
-    success_url = reverse_lazy("api_tests:mnist")
+    success_url = reverse_lazy("api_tests:pcam")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Test of the MNIST Digit Classifier API"
+        context["title"] = "Test of the Patch Camelyon Image Classifier API"
         return context
 
     def form_valid(self, form):
         r = requests.put(
-            "http://localhost:8080/predictions/mnist", data=form.cleaned_data["image"]
+            "http://localhost:8080/predictions/pcam_cnn", data=form.cleaned_data["image"]
         )
         number = r.text
         messages.add_message(
             self.request,
             messages.INFO,
-            f"The file you uploaded was the number {number}",
+            f"The file you uploaded was has this category: {number}",
         )
         return super().form_valid(form)
 
