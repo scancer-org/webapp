@@ -1,6 +1,7 @@
 {% load static i18n compress%}<!DOCTYPE html>
 
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,28 +20,8 @@
     {% block inline_css %}
     {% endblock inline_css %}
   </head>
-  <body>
-    {% block content %}
-    {% block header %}
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'home'%}">scancer</a>
-      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      {% if request.user.is_authenticated %}
-      <div class="text-end me-3 my-1">
-        <a href="{% url 'users:detail' request.user.username  %}" class="btn btn-sm btn-outline-light me-2">{% trans "Preferences" %}</a>
-        <a href="{% url 'account_logout' %}" class="btn btn-sm btn-outline-danger">{% trans "Sign Out" %}</a>
-      </div>
-      {% else%}
-      <div class="text-end me-3 my-1">
-        <a href="{% url 'account_login' %}" class="btn btn-sm btn-outline-light me-2">{% trans "Sign In" %}</a>
-        <a href="{% url 'account_signup' %}" class="btn btn-sm btn-primary">{% trans "Sign Up" %}</a>
-      </div>
-      {% endif %}
-    </header>
-    {% endblock header %}
 
+  <body>
     {% block messages %}
     {% if messages %}
     {% for message in messages %}
@@ -52,100 +33,54 @@
     {% endif %}
     {% endblock messages %}
 
-    <div class="row">
-      {% block navigation %}
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/patients/' %}active{% endif %}" aria-current="page" href="{% url 'patients:list' %}">
-                <span data-feather="home"></span>
-                Patients
-              </a>
-            </li>
-          </ul>
+    {% block header %}
+    <div class="container">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none fs-4">
+          Scancer
+        </a>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'home' %}" class="nav-link px-2 link-{% if request.path == '/' %}secondary{% else %}dark{% endif %}">Home</a></li>
+          <li><a href="{% url 'about' %}" class="nav-link px-2 link-{% if request.path == '/about/' %}secondary{% else %}dark{% endif %}">About</a></li>
+          <li><a href="{% url 'contribute' %}" class="nav-link px-2 link-{% if request.path == '/contribute/' %}secondary{% else %}dark{% endif %}">Contribute</a></li>
+          <li><a href="https://github.com/scancer-org" class="nav-link px-2 link-dark">GitHub</a></li>
+        </ul>
 
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Examinations</span>
-            <a class="link-secondary" href="#" aria-label="Look at all examinations">
-              <span data-feather="plus-circle"></span>
-            </a>
-          </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Manual Exams
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Mammograms
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Lymph Node Biopsies
-              </a>
-            </li>
-          </ul>
-
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>API Tests</span>
-            <a class="link-secondary" href="#" aria-label="Some tests of the API">
-              <span data-feather="plus-circle"></span>
-            </a>
-          </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/api-tests/pcam/' %}active{% endif %}" href="{% url 'api_tests:pcam' %}">
-                <span data-feather="file-text"></span>
-                Pcam
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/api-tests/deeplabv3/' %}active{% endif %}" href="{% url 'api_tests:deeplabv3' %}">
-                <span data-feather="file-text"></span>
-                DeepLabv3
-              </a>
-            </li>
-          </ul>
+        <div class="col-md-3 text-end">
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'account_logout' %}" class="btn btn-outline-primary me-2">{% trans "Sign Out" %}</a>
+          {% else %}
+          <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2">{% trans "Try Prototype" %}</a>
+          {% endif %}
         </div>
-      </nav>
-      {% endblock navigation %}
-
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      {% block main %}
-      {% endblock main %}
-      </main>
-
+      </header>
     </div>
+    {% endblock header %}
 
-</div>
-{% endblock content %}
+    {% block content %}
+    {% endblock content %}
 
-{% block javascript %}
-{% compress js %}
-<script defer src="{% static 'js/vendors.js' %}"></script>
-{% endcompress %}
-{% compress js %}
-<script defer src="{% static 'js/project.js' %}"></script>
-{% endcompress %}
-{% endblock javascript %}
+    {% block footer %}
+    <footer class="text-muted py-4 bg-light">
+      <div class="container">
+        <p class="mb-1">A one-line summary of the project. <a href="{% url 'contribute' %}">Learn how to contribute</a>.</p>
+        <p class="mb-0">&copy; 2021 Harish Narayanan and Daniel Hen</p>
+      </div>
+    </footer>
+    {% endblock footer %}
 
-{% block inline_javascript %}
-{% endblock inline_javascript %}
+    {% block javascript %}
+    {% compress js %}
+    <script defer src="{% static 'js/vendors.js' %}"></script>
+    {% endcompress %}
+    {% compress js %}
+    <script defer src="{% static 'js/project.js' %}"></script>
+    {% endcompress %}
+    {% endblock javascript %}
 
-{% block modal %}{% endblock modal %}
-</body>
+    {% block inline_javascript %}
+    {% endblock inline_javascript %}
+
+    {% block modal %}{% endblock modal %}
+  </body>
 </html>
-
-{% comment %}
-  {% block footer %}
-  <footer class="pt-5 my-5 text-muted border-top">
-    Created by <a href="">Harish Narayanan</a> and <a href="">Daniel Hen</a> &middot; &copy; 2021
-  </footer>
-  {% endblock footer %}
-{% endcomment %}
