@@ -1,15 +1,14 @@
-{% extends "base.html" %}
+{% extends "base_app.html" %}
 
-{% block title %}Test of the MNIST Digit Classifier API{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
-{% block main %}
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">{{ title }}</h1>
-</div>
-
-<form method="post" enctype="multipart/form-data">
+{% block content %}
+<main class="container-fluid">
+  <h1 class="h2 pt-3 pb-2 mb-3 border-bottom">{{ title }}</h1>
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Classify image">
-</form>
-{% endblock %}
+  </form>
+</main>
+{% endblock content %}

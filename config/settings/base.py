@@ -78,6 +78,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "scancer.users.apps.UsersConfig",
     "scancer.patients.apps.PatientsConfig",
+    "scancer.examinations.apps.ExaminationsConfig",
     "scancer.api_tests.apps.APITestsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

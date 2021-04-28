@@ -22,6 +22,9 @@ urlpatterns = [
     # User management
     path("users/", include("scancer.users.urls", namespace="users")),
     path("patients/", include("scancer.patients.urls", namespace="patients")),
+    path(
+        "examinations/", include("scancer.examinations.urls", namespace="examinations")
+    ),
     path("api-tests/", include("scancer.api_tests.urls", namespace="api_tests")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here

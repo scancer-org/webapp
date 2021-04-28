@@ -1,0 +1,48 @@
+{% extends "base_app.html" %}
+
+{% block title %}List of Lymph Node Biopsies{% endblock %}
+
+{% block content %}
+<main class="container-fluid">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">All Lymph Node Biopsies</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <button type="button" class="btn btn-sm btn-outline-secondary">
+        <span data-feather="calendar"></span>
+        Show High Risk
+      </button>
+    </div>
+  </div>
+
+  <div class="table-responsive mt-3">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Examination Date</th>
+          <th>Type</th>
+          <th>Patient</th>
+          <th>Sex</th>
+          <th>Age</th>
+          <th>Doctor</th>
+          <th>Examined By</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for examination in examinations %}
+        <tr>
+          <td><a href="#">{{ examination.date }}</a></td>
+          <td>{{ examination.get_kind_display }}</td>
+          <td>{{ examination.patient.name }}</td>
+          <td>{{ examination.patient.age.years }} Years {{ examination.patient.age.months }} Months</td>
+          <td>{{ examination.patient.get_sex_display }}</td>
+          <td>{{ patient.doctor }}</td>
+          <td>{{ examination.healthcare_professional }}</td>
+          <td><span class="badge bg-{{ examination.priority_colour }}">{{ examination.get_priority_display }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+{% endblock content %}

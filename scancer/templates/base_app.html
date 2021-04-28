@@ -19,11 +19,11 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown2" data-bs-toggle="dropdown" aria-expanded="false">Examinations</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown2">
-            <li><a class="dropdown-item" href="#">Manual Exams</a></li>
+            <li><a class="dropdown-item" href="{% url 'examinations:list' %}">Manual Exams</a></li>
             <li><a class="dropdown-item disabled" href="#">Mammograms</a></li>
             <li><a class="dropdown-item disabled" href="#">Ultrasounds</a></li>
             <li><a class="dropdown-item disabled" href="#">MRIs</a></li>
-            <li><a class="dropdown-item" href="#">Lymph Node Biopsies</a></li>
+            <li><a class="dropdown-item" href="{% url 'examinations:list' %}">Lymph Node Biopsies</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

@@ -14,7 +14,7 @@ class Patient(models.Model):
     note = models.TextField(blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.age.years}{self.sex})"
 
     @property
     def age(self):
