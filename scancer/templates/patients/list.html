@@ -2,132 +2,43 @@
 
 {% block title %}List of Patients{% endblock %}
 
-{% block main %}
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">All Patients</h1>
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-      <span data-feather="calendar"></span>
-      Highest Risk
-    </button>
-  </div>
-</div>
-
-<div class="table-responsive mt-3">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Sex</th>
-        <th>Age</th>
-        <th>Last Examination</th>
-        <th>Upcoming Examination</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1001</td>
-        <td>Female</td>
-        <td>49 Years 3 Months</td>
-        <td>12/10/2020: <a href="#">Mammogram</a></td>
-        <td>24/10/2020: <a href="#">Biopsy</a></td>
-      </tr>
-      <tr>
-        <td>1001</td>
-        <td>Female</td>
-        <td>49 Years 3 Months</td>
-        <td>12/10/2020: <a href="#">Mammogram</a></td>
-        <td>24/10/2020: <a href="#">Biopsy</a></td>
-      </tr>
-      <tr>
-        <td>1001</td>
-        <td>Female</td>
-        <td>49 Years 3 Months</td>
-        <td>12/10/2020: <a href="#">Mammogram</a></td>
-        <td>24/10/2020: <a href="#">Biopsy</a></td>
-      </tr>
-      <tr>
-        <td>1001</td>
-        <td>Female</td>
-        <td>49 Years 3 Months</td>
-        <td>12/10/2020: <a href="#">Mammogram</a></td>
-        <td>24/10/2020: <a href="#">Biopsy</a></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-{% endblock main %}
-
-
-    <div class="row">
-      {% block navigation %}
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/patients/' %}active{% endif %}" aria-current="page" href="{% url 'patients:list' %}">
-                <span data-feather="home"></span>
-                Patients
-              </a>
-            </li>
-          </ul>
-
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Examinations</span>
-            <a class="link-secondary" href="#" aria-label="Look at all examinations">
-              <span data-feather="plus-circle"></span>
-            </a>
-          </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Manual Exams
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Mammograms
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Lymph Node Biopsies
-              </a>
-            </li>
-          </ul>
-
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>API Tests</span>
-            <a class="link-secondary" href="#" aria-label="Some tests of the API">
-              <span data-feather="plus-circle"></span>
-            </a>
-          </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/api-tests/pcam/' %}active{% endif %}" href="{% url 'api_tests:pcam' %}">
-                <span data-feather="file-text"></span>
-                Pcam
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {% if request.path == '/api-tests/deeplabv3/' %}active{% endif %}" href="{% url 'api_tests:deeplabv3' %}">
-                <span data-feather="file-text"></span>
-                DeepLabv3
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      {% endblock navigation %}
-
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        {% block main__ %}
-        {% endblock main__ %}
-      </main>
-
+{% block content %}
+<main class="container-fluid">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">All Patients</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <button type="button" class="btn btn-sm btn-outline-secondary">
+        <span data-feather="calendar"></span>
+        Show High Risk
+      </button>
     </div>
+  </div>
 
-</div>
+  <div class="table-responsive mt-3">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Hospital Number</th>
+          <th>Age</th>
+          <th>Sex</th>
+          <th>Last Examination</th>
+          <th>Upcoming Examination</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for patient in patients %}
+        <tr>
+          <td><a href="#">{{ patient.name }}</a></td>
+          <td>{{ patient.hospital_number }}</td>
+          <td>{{ patient.age.years }} Years {{ patient.age.months }} Months</td>
+          <td>{{ patient.get_sex_display }}</td>
+          <td>12/10/2020: <a href="#">Mammogram</a></td>
+          <td>24/10/2020: <a href="#">Biopsy</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+{% endblock content %}
