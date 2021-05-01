@@ -61,7 +61,7 @@ function styles() {
   ]
 
   var minifyCss = [
-      cssnano({ preset: 'default' })   // minify result
+      cssnano({ preset: 'default', svgo: false })   // minify result
   ]
 
   return src(`${paths.sass}/project.scss`)
