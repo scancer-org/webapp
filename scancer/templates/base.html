@@ -12,9 +12,7 @@
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
     {% block css %}
-    {% compress css %}
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
-    {% endcompress %}
     {% endblock %}
 
     {% block inline_css %}
