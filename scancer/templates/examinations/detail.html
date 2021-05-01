@@ -1,0 +1,68 @@
+{% extends "base_app.html" %}
+
+{% load static %}
+
+{% block title %}Details of {{ examination.get_kind_display }} &ndash; {{ examination.id  }}{% endblock %}
+
+{% block content %}
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <h1 class="mt-2 mb-3">
+        {{ examination.get_kind_display }} &ndash; {{ examination.id  }}
+      </h1>
+
+      <ul class="nav nav-tabs mb-3" id="scanTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Info</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="analysis-tab" data-bs-toggle="tab" data-bs-target="#analysis" type="button" role="tab" aria-controls="analysis" aria-selected="false">Analysis</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Notes</button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="scanTabsContent">
+        <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+          <dl class="row">
+            <dt class="col-sm-4">Patient Name</dt>
+            <dd class="col-sm-8">{{ examination.patient.name }}</dd>
+            <dt class="col-sm-4">Hospital Number</dt>
+            <dd class="col-sm-8">{{ examination.patient.hospital_number }}</dd>
+            <dt class="col-sm-4">Sex</dt>
+            <dd class="col-sm-8">
+              {{ examination.patient.sex }}
+            </dd>
+            <dt class="col-sm-4">Scan Date</dt>
+            <dd class="col-sm-8">{{ examination.date }}</dd>
+            <dt class="col-sm-4">Priority</dt>
+            <dd class="col-sm-8">
+              <span class="badge bg-{{ examination.priority_colour }}">{{ examination.get_priority_display }}</span>
+            </dd>
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8">
+              <span class="badge bg-warning text-dark">Unprocessed</span>
+            </dd>
+          </dl>
+        </div>
+        <div class="tab-pane fade" id="analysis" role="tabpanel" aria-labelledby="analysis-tab">
+          <button type="button" class="btn btn-outline-success mb-3">Auto Classify</button>
+          <button type="button" class="btn btn-outline-success mb-3">Auto Heatmap</button>
+          <button type="button" class="btn btn-success mb-3">Manually Annotate</button>
+        </div>
+        <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+          <div>
+            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <button type="button" class="btn btn-outline-success">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <img src="{% static 'images/scan-placeholder.png' %}" class="img-fluid" alt="Scan image">
+    </div>
+  </div>
+</main>
+{% endblock %}

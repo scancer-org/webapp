@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from scancer.patients.models import Patient
 
@@ -16,6 +17,9 @@ class Examination(models.Model):
 
     def __str__(self):
         return f"{self.kind} ({self.date})"
+
+    def get_absolute_url(self):
+        return reverse("examinations:detail", args=[str(self.id)])
 
     @property
     def priority_colour(self):

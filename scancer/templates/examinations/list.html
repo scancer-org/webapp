@@ -21,8 +21,8 @@
           <th>Examination Date</th>
           <th>Type</th>
           <th>Patient</th>
-          <th>Sex</th>
           <th>Age</th>
+          <th>Sex</th>
           <th>Doctor</th>
           <th>Examined By</th>
           <th>Priority</th>
@@ -31,7 +31,7 @@
       <tbody>
         {% for examination in examinations %}
         <tr>
-          <td><a href="#">{{ examination.date }}</a></td>
+          <td><a href="{{ examination.get_absolute_url }}">{{ examination.date }}</a></td>
           <td>{{ examination.get_kind_display }}</td>
           <td>{{ examination.patient.name }}</td>
           <td>{{ examination.patient.age.years }} Years {{ examination.patient.age.months }} Months</td>
