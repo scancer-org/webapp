@@ -31,8 +31,16 @@
           <ul class="dropdown-menu" aria-labelledby="dropdown3">
             <li><a class="dropdown-item" href="{% url 'api_tests:pcam-classification' %}">PCam Classification</a></li>
             <li><a class="dropdown-item" href="{% url 'api_tests:pcam-classification-serve-info' %}">PCam Classification (Serve Info)</a></li>
-            <li><a class="dropdown-item" href="{% url 'api_tests:camelyon-segmentation' %}">Camelyon Segmentation</a></li>
-            <li><a class="dropdown-item" href="#">Monitoring</a></li>
+            <li><a class="dropdown-item disabled" href="{% url 'api_tests:camelyon-segmentation' %}">Camelyon Segmentation</a></li>
+            <li><a class="dropdown-item disabled" href="#">Camelyon Segmentation (Serve Info)</a></li>
+            <li><a class="dropdown-item disabled" href="#">Monitoring</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown4" data-bs-toggle="dropdown" aria-expanded="false">API Docs</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown4">
+            <li><a class="dropdown-item" href="https://github.com/scancer-org/api/blob/main/docs/using.md">API Usage Docs</a></li>
+            <li><a class="dropdown-item" href="https://github.com/scancer-org/api/blob/main/docs/contributing.md">Model Store Contributing Docs</a></li>
           </ul>
         </li>
       </ul>
