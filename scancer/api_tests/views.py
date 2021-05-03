@@ -1,11 +1,10 @@
 import requests
-from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormView
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import authentication, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .forms import ImageUploadForm
 
@@ -20,14 +19,14 @@ class PCamImageClassificationView(LoginRequiredMixin, FormView):
         context["sample_images"] = [
             {
                 "name": "Class 0: No metastatic tissue",
-                "url": "https://scancer.org/static/images/api-tests/pcam-0.png"
+                "url": "https://scancer.org/static/images/api-tests/pcam-0.png",
             },
             {
                 "name": "Class 1: Has metastatic tissue",
-                "url": "https://scancer.org/static/images/api-tests/pcam-1.png"
-            }
+                "url": "https://scancer.org/static/images/api-tests/pcam-1.png",
+            },
         ]
-        context["category"] = self.request.GET.get('category')
+        context["category"] = self.request.GET.get("category")
         return context
 
     def form_valid(self, form):
@@ -58,9 +57,7 @@ class CamelyonImageSegmentationView(LoginRequiredMixin, FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context[
-            "title"
-        ] = "Test of the Camelyon Image Segmentation API"
+        context["title"] = "Test of the Camelyon Image Segmentation API"
         return context
 
     def form_valid(self, form):
@@ -68,4 +65,5 @@ class CamelyonImageSegmentationView(LoginRequiredMixin, FormView):
             "http://localhost:8080/predictions/camelyon-segmentation",
             data=form.cleaned_data["image"],
         )
+        self.segments = r.text
         return super().form_valid(form)
