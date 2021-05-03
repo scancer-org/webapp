@@ -3,6 +3,9 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
 
 from .forms import ImageUploadForm
 
@@ -29,6 +32,15 @@ class PCamImageClassificationView(LoginRequiredMixin, FormView):
             f"The file you uploaded was has this category: {number}",
         )
         return super().form_valid(form)
+
+
+class PCamImageClassificationServeInfoView(APIView):
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        r = requests.get("http://localhost:8081/models/pcam-classification")
+        return Response(r.json())
 
 
 class CamelyonImageSegmentationView(LoginRequiredMixin, FormView):
