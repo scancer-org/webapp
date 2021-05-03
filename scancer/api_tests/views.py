@@ -7,14 +7,14 @@ from django.views.generic.edit import FormView
 from .forms import ImageUploadForm
 
 
-class PCamImageClassifierView(LoginRequiredMixin, FormView):
+class PCamImageClassificationView(LoginRequiredMixin, FormView):
     template_name = "api_tests/image_upload.html"
     form_class = ImageUploadForm
-    success_url = reverse_lazy("api_tests:pcam")
+    success_url = reverse_lazy("api_tests:pcam-classification")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Test of the Patch Camelyon Image Classifier API"
+        context["title"] = "Test of the Patch Camelyon Image Classification API"
         return context
 
     def form_valid(self, form):
@@ -31,21 +31,21 @@ class PCamImageClassifierView(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 
-class DeepLabv3ImageSegmenterView(LoginRequiredMixin, FormView):
+class CamelyonImageSegmentationView(LoginRequiredMixin, FormView):
     template_name = "api_tests/image_upload.html"
     form_class = ImageUploadForm
-    success_url = reverse_lazy("api_tests:deeplabv3")
+    success_url = reverse_lazy("api_tests:camelyon-segmentation")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context[
             "title"
-        ] = "Test of the DeepLabv3 (ResNet 101 backbone) Image Segmenter API"
+        ] = "Test of the Camelyon Image Segmentation API"
         return context
 
     def form_valid(self, form):
         r = requests.put(
-            "http://localhost:8080/predictions/deeplabv3_resnet_101",
+            "http://localhost:8080/predictions/camelyon-segmentation",
             data=form.cleaned_data["image"],
         )
         segments = r.text
