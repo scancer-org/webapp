@@ -26,24 +26,36 @@
             <li><a class="dropdown-item" href="{% url 'examinations:list' %}">Lymph Node Biopsies</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown3" data-bs-toggle="dropdown" aria-expanded="false">API Tests</a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown3">
-            <li><a class="dropdown-item" href="{% url 'api_tests:pcam-classification' %}">PCam Classification</a></li>
-            <li><a class="dropdown-item" href="{% url 'api_tests:pcam-classification-serve-info' %}">PCam Classification (Serve Info)</a></li>
-            <li><a class="dropdown-item disabled" href="{% url 'api_tests:camelyon-segmentation' %}">Camelyon Segmentation</a></li>
-            <li><a class="dropdown-item disabled" href="#">Camelyon Segmentation (Serve Info)</a></li>
-            <li><a class="dropdown-item disabled" href="#">Monitoring</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown4" data-bs-toggle="dropdown" aria-expanded="false">API Docs</a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown4">
-            <li><a class="dropdown-item" href="https://github.com/scancer-org/api/blob/main/docs/using.md">API Usage Docs</a></li>
-            <li><a class="dropdown-item" href="https://github.com/scancer-org/api/blob/main/docs/contributing.md">Model Store Contributing Docs</a></li>
-          </ul>
-        </li>
       </ul>
+      <div class="d-flex">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown3" data-bs-toggle="dropdown" aria-expanded="false">API Tests</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown3">
+              <li><a class="dropdown-item" href="{% url 'api_tests:pcam-classification' %}">PCam Classification</a></li>
+              <li><a class="dropdown-item" href="{% url 'api_tests:pcam-classification-serve-info' %}">PCam Classification (Serve Info)</a></li>
+              <li><a class="dropdown-item disabled" href="{% url 'api_tests:camelyon-segmentation' %}">Camelyon Segmentation</a></li>
+              <li><a class="dropdown-item disabled" href="#">Camelyon Segmentation (Serve Info)</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown4" data-bs-toggle="dropdown" aria-expanded="false">Tech Docs</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown4">
+              <li><a class="dropdown-item" href="https://github.com/scancer-org/api/blob/main/docs/using.md">Using the API</a></li>
+              <li><a class="dropdown-item" href="https://github.com/scancer-org/api/blob/main/docs/contributing.md">Contributing to the Model Store</a></li>
+              <li><a class="dropdown-item disabled" href="#">Monitoring the API</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown5" data-bs-toggle="dropdown" aria-expanded="false">{{ request.user.name  }}</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown5">
+              <li><a class="dropdown-item" href="{% url 'users:detail' request.user.username  %}">Your Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'account_logout' %}">Log out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
