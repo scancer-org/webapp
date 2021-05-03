@@ -1,7 +1,7 @@
 import requests
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormView
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -11,13 +11,23 @@ from .forms import ImageUploadForm
 
 
 class PCamImageClassificationView(LoginRequiredMixin, FormView):
-    template_name = "api_tests/image_upload.html"
+    template_name = "api_tests/image_analyse.html"
     form_class = ImageUploadForm
-    success_url = reverse_lazy("api_tests:pcam-classification")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Test of the Patch Camelyon Image Classification API"
+        context["sample_images"] = [
+            {
+                "name": "Class 0: No metastatic tissue",
+                "url": "https://scancer.org/static/images/api-tests/pcam-0.png"
+            },
+            {
+                "name": "Class 1: Has metastatic tissue",
+                "url": "https://scancer.org/static/images/api-tests/pcam-1.png"
+            }
+        ]
+        context["category"] = self.request.GET.get('category')
         return context
 
     def form_valid(self, form):
@@ -25,13 +35,11 @@ class PCamImageClassificationView(LoginRequiredMixin, FormView):
             "http://localhost:8080/predictions/pcam-classification",
             data=form.cleaned_data["image"],
         )
-        number = r.text
-        messages.add_message(
-            self.request,
-            messages.INFO,
-            f"The file you uploaded was has this category: {number}",
-        )
+        self.category = r.text
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("api_tests:pcam-classification") + f"?category={self.category}"
 
 
 class PCamImageClassificationServeInfoView(APIView):
@@ -44,7 +52,7 @@ class PCamImageClassificationServeInfoView(APIView):
 
 
 class CamelyonImageSegmentationView(LoginRequiredMixin, FormView):
-    template_name = "api_tests/image_upload.html"
+    template_name = "api_tests/image_analyse.html"
     form_class = ImageUploadForm
     success_url = reverse_lazy("api_tests:camelyon-segmentation")
 
@@ -59,11 +67,5 @@ class CamelyonImageSegmentationView(LoginRequiredMixin, FormView):
         r = requests.put(
             "http://localhost:8080/predictions/camelyon-segmentation",
             data=form.cleaned_data["image"],
-        )
-        segments = r.text
-        messages.add_message(
-            self.request,
-            messages.INFO,
-            f"The file you uploaded has the following segments {segments}",
         )
         return super().form_valid(form)

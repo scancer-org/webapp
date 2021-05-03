@@ -1,0 +1,29 @@
+{% extends "base_app.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<main class="container-fluid">
+  <h1 class="h2 pt-3 pb-2 mb-3 border-bottom">{{ title }}</h1>
+  {% if sample_images %}
+  <h2 class="h3">Download Sample Data</h2>
+  <ul>
+    {% for image in sample_images %}
+    <li><a href="{{ image.url }}" download>{{ image.name }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <h2 class="h3">Upload an Image for Analysis</h2>
+  <form class="mb-3" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn btn-primary"  type="submit" value="Analyse Image">
+  </form>
+  {% if category == "0" %}
+  <p class="lead text-success">The image you uploaded has no metastatic tissue.</p>
+  {% endif %}
+  {% if category == "1" %}
+  <p class="lead text-danger">The image you uploaded has metastatic tissue.</p>
+  {% endif %}
+</main>
+{% endblock content %}
