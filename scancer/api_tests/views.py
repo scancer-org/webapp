@@ -19,7 +19,7 @@ class PCamImageClassifierView(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         r = requests.put(
-            "http://localhost:8080/predictions/pcam_cnn",
+            "http://localhost:8080/predictions/pcam-classification",
             data=form.cleaned_data["image"],
         )
         number = r.text
