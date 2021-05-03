@@ -1,18 +1,41 @@
 {% extends "base.html" %}
 
-{% load i18n %}
+{% load static %}
 
 {% block title %}The Scancer Project{% endblock title %}
 
 {% block content %}
 <main>
   <div class="container">
-    <p class="lead">This is the landing page. It contains a punchy summary of the project and prompts people to:</p>
-    <ul>
-      <li><a href="{% url 'about' %}">Learn more about the project</a></li>
-      <li><a href="{% url 'account_login' %}">Explore the prototype</a></li>
-      <li><a href="{% url 'contribute' %}">Contribute to the project</a></li>
-    </ul>
+    <div class="row flex-lg-row-reverse align-items-center g-5 pb-4">
+      <div class="col-sm-8 col-lg-6">
+        <img src="{% static 'images/scan-placeholder.png' %}" class="d-block mx-lg-auto img-fluid border" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-6 fw-bold lh-1 mb-3">33% more metastases found.<br>Thousands of lives saved.</h1>
+        <p class="lead">Histopathologists who use our Scancer help more patients every day. Our assistant identifies metastases and prioritises high-risk scans with n% higher accuracy and in nx less time with state of the art computer vision.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg px-4 me-md-2">Be a part of our mission</a>
+        </div>
+      </div>
+    </div>
   </div>
+
+<div class="container py-3">
+  <div class="row g-5">
+    <div class="feature col-md-4">
+      <h2 class="h3">Focus your expertise on the patients who most need it</h2>
+      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+    </div>
+    <div class="feature col-md-4">
+      <h2 class="h3">Apply your detection skills to most relevant scan areas</h2>
+      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+    </div>
+    <div class="feature col-md-4">
+      <h2 class="h3">Something about burnout reduction?</h2>
+      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+    </div>
+  </div>
+</div>
 </main>
 {% endblock content %}
