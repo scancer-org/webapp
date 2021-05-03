@@ -4,6 +4,18 @@
 
 {% block title %}Details of {{ examination.get_kind_display }} &ndash; {{ examination.id  }}{% endblock %}
 
+{% block inline_css %}
+<style>
+  #slide {
+      background-color: black;
+  }
+  #slide.fullpage {
+      left: 0%;
+      border: 0;
+  }
+</style>
+{% endblock inline_css %}
+
 {% block content %}
 <main class="container-fluid">
   <div class="row">
@@ -61,8 +73,74 @@
       </div>
     </div>
     <div class="col-md-9">
-      <img src="{% static 'images/scan-placeholder.png' %}" class="img-fluid" alt="Scan image">
+      <div id="slide" class="vh-100"></div>
     </div>
   </div>
 </main>
-{% endblock %}
+{% endblock content %}
+
+
+{% block inline_javascript %}
+<script src="{% static 'js/slide/jquery.js' %}"></script>
+<script src="{% static 'js/slide/openseadragon.js' %}"></script>
+<script src="{% static 'js/slide/openseadragon-scalebar.js' %}"></script>
+
+<script>
+  $(document).ready(function() {
+      var dzi_data = {{ dzi_data|default:"{}"|safe }};
+      var viewer = new OpenSeadragon({
+          id: "slide",
+          prefixUrl: "{% static 'images/slide/' %}",
+          timeout: 120000,
+          animationTime: 0.5,
+          blendTime: 0.1,
+          constrainDuringPan: true,
+          maxZoomPixelRatio: 2,
+          minZoomLevel: 1,
+          visibilityRatio: 1,
+          zoomPerScroll: 2,
+      });
+      viewer.addHandler("open", function() {
+          // To improve load times, ignore the lowest-resolution Deep Zoom
+          // levels.  This is a hack: we can't configure the minLevel via
+          // OpenSeadragon configuration options when the viewer is created
+          // from DZI XML.
+          viewer.source.minLevel = 8;
+      });
+      viewer.scalebar({
+          xOffset: 10,
+          yOffset: 10,
+          barThickness: 3,
+          color: '#555555',
+          fontColor: '#333333',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      });
+
+      function open_slide(url, mpp) {
+          var tile_source;
+          if (dzi_data[url]) {
+              // DZI XML provided as template argument (deepzoom_tile.py)
+              tile_source = new OpenSeadragon.DziTileSource(
+                  OpenSeadragon.DziTileSource.prototype.configure(
+                      OpenSeadragon.parseXml(dzi_data[url]), url));
+          } else {
+              // DZI XML fetched from server (deepzoom_server.py)
+              tile_source = url;
+          }
+          viewer.open(tile_source);
+          viewer.scalebar({
+              pixelsPerMeter: mpp ? (1e6 / mpp) : 0,
+          });
+      }
+
+      open_slide("{{ slide_url }}", "{{ slide_mpp }}");
+      $(".load-slide").click(function(ev) {
+          $(".current-slide").removeClass("current-slide");
+          $(this).parent().addClass("current-slide");
+          open_slide($(this).attr('data-url'),
+                     parseFloat($(this).attr('data-mpp')));
+          ev.preventDefault();
+      });
+  });
+</script>
+{% endblock inline_javascript %}

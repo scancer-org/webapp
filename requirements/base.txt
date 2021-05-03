@@ -8,6 +8,7 @@ hiredis==1.1.0  # https://github.com/redis/hiredis-py
 celery==4.4.6  # pyup: < 5.0,!=4.4.7  # https://github.com/celery/celery
 django-celery-beat==2.2.0  # https://github.com/celery/django-celery-beat
 uvicorn[standard]==0.13.4  # https://github.com/encode/uvicorn
+openslide-python==1.1.2  # https://github.com/openslide/openslide-python
 
 # Django
 # ------------------------------------------------------------------------------
