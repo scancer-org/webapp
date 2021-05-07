@@ -1,13 +1,42 @@
 {% extends "base.html" %}
 
-{% load i18n %}
+{% load static %}
 
 {% block title %}About the Scancer Project{% endblock title %}
 
 {% block content %}
-<main>
-  <div class="container">
-    <p class="lead">This is a detailed description of the project, serving as the project report.</p>
+<main class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-8">
+      <h1>About This Project</h1>
+      <p class="lead">Scancer is a collaborative effort to increase access to the early detection of breast cancer.</p>
+      <p>Breast cancer is the most diagnosed cancer among women worldwide, accounting for 1 in 4 cancer cases. In 2020, there were an estimated 684,996 deaths from breast cancer, with a disproportionate number of these deaths occurring in low-resource settings.&nbsp;[1]</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-lg-5 mb-3">
+      <img src="{% static 'images/about/top-cancer.png' %}" class="img-fluid img-thumbnail" alt="Breast cancer is the most diagnosed cancer among women worldwide.">
+    </div>
+    <div class="col-md-6 col-lg-5 mb-3">
+      <img src="{% static 'images/about/mortality-rates.png' %}" class="img-fluid img-thumbnail" alt="Estimated age-standardized mortality rates (World) in 2020, breast, females, all ages.">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-8">
+      <p>Survival rates for breast cancer are very high when the cancer is detected early and where treatment is available. Unfortunately, 50 to 80% of breast cancer cases are diagnosed at an advanced stage in many low- and middle-income countries, when the cancer is usually incurable.&nbsp;[1]</p>
+      <ul>
+        <li>Diagnosis involves many stages, including manual exams, mammograms, MRIs, biopsies …</li>
+        <li>Many of these things are hard to do, and can be sped up with computer vision assisting human experts</li>
+        <li>There exist many papers and models out there on bits and pieces of this, but no comprehensive solution (that we know of that) is clinically relevant</li>
+        <li>Here is how we have chosen to structure our solution: plan, philosophy</li>
+        <li>Some detailed notes and screenshots on what we have working so far, and pointers to GitHub repos</li>
+        <li>Where we are going next and how you can help</li>
+      </ul>
+      <h2>References</h2>
+      <ol>
+        <li>Reference</li>
+      </ol>
+    </div>
   </div>
 </main>
 {% endblock content %}
