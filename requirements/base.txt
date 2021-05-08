@@ -9,6 +9,10 @@ celery==4.4.6  # pyup: < 5.0,!=4.4.7  # https://github.com/celery/celery
 django-celery-beat==2.2.0  # https://github.com/celery/django-celery-beat
 uvicorn[standard]==0.13.4  # https://github.com/encode/uvicorn
 openslide-python==1.1.2  # https://github.com/openslide/openslide-python
+PySocks==1.7.1
+filelock==3.0.12
+gdown==3.13.0
+tqdm==4.60.0
 
 # Django
 # ------------------------------------------------------------------------------
