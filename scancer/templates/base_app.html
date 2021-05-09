@@ -51,7 +51,7 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown5">
               <li><a class="dropdown-item" href="{% url 'users:detail' request.user.username  %}">Your Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
-              <li><a class="dropdown-item text-danger" href="{% url 'account_logout' %}">Log out</a></li>
+              <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a></li>
             </ul>
           </li>
         </ul>
