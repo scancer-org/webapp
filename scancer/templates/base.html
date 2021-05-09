@@ -39,10 +39,8 @@
         </a>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="{% url 'home' %}" class="nav-link px-2 link-{% if request.path == '/' %}secondary{% else %}dark{% endif %}">Home</a></li>
-          <li><a href="{% url 'about' %}" class="nav-link px-2 link-{% if request.path == '/about/' %}secondary{% else %}dark{% endif %}">About</a></li>
-          <li><a href="{% url 'contribute' %}" class="nav-link px-2 link-{% if request.path == '/contribute/' %}secondary{% else %}dark{% endif %}">Contribute</a></li>
-          <li><a href="https://github.com/scancer-org" class="nav-link px-2 link-dark" target="_blank">GitHub</a></li>
+          <li><a href="{% url 'contribute' %}" class="nav-link px-2 link-{% if request.path == '/contribute/' %}secondary{% else %}dark{% endif %}">How Can You Help?</a></li>
+          <li><a href="{% url 'about' %}" class="nav-link px-2 link-{% if request.path == '/about/' %}secondary{% else %}dark{% endif %}">Vision</a></li>
         </ul>
       </header>
     </div>
