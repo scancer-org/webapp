@@ -28,6 +28,15 @@ class ExaminationListView(LoginRequiredMixin, ListView):
     template_name = "examinations/list.html"
 
 
+# The following is adapted from a demonstration Flask app in the
+# OpenSlide Python repository. Specifically:
+# https://github.com/openslide/openslide-python/blob/main/examples/deepzoom/deepzoom_server.py
+#
+# The original code is released under the terms of the GNU Lesser
+# General Public License, version 2.1 and copyright Carnegie Mellon
+# University.
+
+
 class ExaminationDetailView(LoginRequiredMixin, DetailView):
 
     model = Examination
