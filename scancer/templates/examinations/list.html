@@ -36,7 +36,7 @@
           <td>{{ examination.patient.name }}</td>
           <td>{{ examination.patient.age.years }} Years {{ examination.patient.age.months }} Months</td>
           <td>{{ examination.patient.get_sex_display }}</td>
-          <td>{{ patient.doctor }}</td>
+          <td>{{ examination.patient.doctor }}</td>
           <td>{{ examination.healthcare_professional }}</td>
           <td><span class="badge bg-{{ examination.priority_colour }}">{{ examination.get_priority_display }}</span></td>
         </tr>

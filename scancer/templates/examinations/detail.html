@@ -39,35 +39,43 @@
       <div class="tab-content" id="scanTabsContent">
         <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
           <dl class="row">
-            <dt class="col-sm-4">Patient Name</dt>
-            <dd class="col-sm-8">{{ examination.patient.name }}</dd>
-            <dt class="col-sm-4">Hospital Number</dt>
-            <dd class="col-sm-8">{{ examination.patient.hospital_number }}</dd>
-            <dt class="col-sm-4">Sex</dt>
-            <dd class="col-sm-8">
-              {{ examination.patient.sex }}
+            <dt class="col-sm-5">Patient Name</dt>
+            <dd class="col-sm-7">{{ examination.patient.name }}</dd>
+            <dt class="col-sm-5">Hospital&nbsp;Number</dt>
+            <dd class="col-sm-7">{{ examination.patient.hospital_number }}</dd>
+            <dt class="col-sm-5">Sex</dt>
+            <dd class="col-sm-7">
+              {{ examination.patient.get_sex_display }}
             </dd>
-            <dt class="col-sm-4">Scan Date</dt>
-            <dd class="col-sm-8">{{ examination.date }}</dd>
-            <dt class="col-sm-4">Priority</dt>
-            <dd class="col-sm-8">
+            <dt class="col-sm-5">Doctor</dt>
+            <dd class="col-sm-7">{{ examination.patient.doctor }}</dd>
+            <dt class="col-sm-5">Scan Date</dt>
+            <dd class="col-sm-7">{{ examination.date }}</dd>
+            <dt class="col-sm-5">Examined&nbsp;By</dt>
+            <dd class="col-sm-7">{{ examination.healthcare_professional }}</dd>
+            <dt class="col-sm-5">Priority</dt>
+            <dd class="col-sm-7">
               <span class="badge bg-{{ examination.priority_colour }}">{{ examination.get_priority_display }}</span>
             </dd>
-            <dt class="col-sm-4">Status</dt>
-            <dd class="col-sm-8">
+            <dt class="col-sm-5">Status</dt>
+            <dd class="col-sm-7">
               <span class="badge bg-warning">Unprocessed</span>
             </dd>
           </dl>
         </div>
         <div class="tab-pane fade" id="analysis" role="tabpanel" aria-labelledby="analysis-tab">
-          <button type="button" class="btn btn-outline-success mb-3">Auto Classify</button>
-          <button type="button" class="btn btn-outline-success mb-3">Auto Heatmap</button>
-          <button type="button" class="btn btn-success mb-3">Manually Annotate</button>
+          <button type="button" class="btn btn-outline-primary mb-3">Load Heatmap</button>
+
+          <button type="button" class="btn btn-outline-primary disabled mb-1">Auto Classification in Progress</button>
+          <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+          </div>
+          <button type="button" class="btn btn-primary disabled mb-3">Manually Annotate</button>
         </div>
         <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
           <div>
-            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea>
-            <button type="button" class="btn btn-outline-success">Submit</button>
+            <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="10">{{ examination.note }}</textarea>
+            <button type="button" class="btn btn-primary disabled">Update</button>
           </div>
         </div>
       </div>
