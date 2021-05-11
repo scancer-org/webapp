@@ -40,9 +40,9 @@
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
           <li><a href="{% url 'about' %}" class="nav-link px-2 link-{% if request.path == '/about/' %}secondary{% else %}dark{% endif %}">Vision</a></li>
-          <li><a href="{% url 'contribute' %}" class="nav-link px-2 link-{% if request.path == '/contribute/' %}secondary{% else %}dark{% endif %}">How can you help?</a></li>
+          <li><a href="{% url 'contribute' %}" class="nav-link px-2 link-{% if request.path == '/contribute/' %}secondary{% else %}dark{% endif %}">How Can You Help?</a></li>
         </ul>
-        <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2 ms-3">Sign in</a>
+        <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2 ms-3">Sign In</a>
       </header>
     </div>
     {% endblock header %}

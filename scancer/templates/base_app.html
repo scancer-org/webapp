@@ -49,9 +49,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown5" data-bs-toggle="dropdown" aria-expanded="false">{{ request.user.name  }}</a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown5">
-              <li><a class="dropdown-item" href="{% url 'users:detail' request.user.username  %}">Your Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'account_email' %}">Change Email</a></li>
               <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
-              <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a></li>
+              <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
             </ul>
           </li>
         </ul>

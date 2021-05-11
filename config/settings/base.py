@@ -4,6 +4,7 @@ Base settings to build other settings files upon.
 from pathlib import Path
 
 import environ
+from django.contrib.messages import constants as messages
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # scancer/
@@ -123,6 +124,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger",
+}
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
