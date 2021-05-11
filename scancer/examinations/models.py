@@ -22,6 +22,9 @@ class Examination(models.Model):
     priority = models.CharField(max_length=25, choices=PRIORITY_CHOICES, blank=True)
     healthcare_professional = models.CharField(max_length=50, blank=True)
 
+    class Meta:
+        ordering = ["-date"]
+
     def __str__(self):
         return f"{self.kind} ({self.date})"
 

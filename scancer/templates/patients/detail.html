@@ -42,6 +42,7 @@
               <span class="badge bg-{{ patient.risk_colour }}">{{ patient.get_risk_display }}</span>
             </dd>
           </dl>
+          <a class="btn btn-primary disabled" href="">Book Next Appointment</a>
         </div>
         <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
           <div>
@@ -61,7 +62,7 @@
                 <h5 class="card-title">{{ examination.get_kind_display }} <span class="badge bg-{{ examination.priority_colour }}">{{ examination.get_priority_display }}</span></h5>
                 <p class="card-text">{{ examination.note }}</p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <small class="text-muted">{{ examination.date }}<br> by {{ examination.healthcare_professional }}</small>
+                  <small class="text-muted">{{ examination.date }}<br>Examined by {{ examination.healthcare_professional }}</small>
                   <a href="{{ examination.get_absolute_url }}" class="btn btn-primary">View</a>
                 </div>
               </div>
