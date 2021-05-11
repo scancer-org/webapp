@@ -7,7 +7,7 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">All Patients</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
-      <button type="button" class="btn btn-sm btn-outline-secondary">
+      <button type="button" class="btn btn-sm btn-outline-primary">
         <span data-feather="calendar"></span>
         Show High Risk
       </button>
@@ -22,8 +22,10 @@
           <th>Hospital Number</th>
           <th>Age</th>
           <th>Sex</th>
+          <th>Doctor</th>
           <th>Last Examination</th>
-          <th>Upcoming Examination</th>
+          <!-- <th>Upcoming Examination</th> -->
+          <th>Risk</th>
         </tr>
       </thead>
       <tbody>
@@ -33,8 +35,16 @@
           <td>{{ patient.hospital_number }}</td>
           <td>{{ patient.age.years }} Years {{ patient.age.months }} Months</td>
           <td>{{ patient.get_sex_display }}</td>
-          <td>12/10/2020: <a href="#">Mammogram</a></td>
-          <td>24/10/2020: <a href="#">Biopsy</a></td>
+          <td>{{ patient.doctor }}</td>
+          <td>
+            {% if patient.last_examination %}
+            <a href="{% url 'examinations:detail' patient.last_examination.id %}">{{ patient.last_examination.get_kind_display }}: {{ patient.last_examination.date }}</a>
+            {% else %}
+            &mdash;
+            {% endif %}
+          </td>
+          <!-- <td>24/10/2020: <a href="#">Biopsy</a></td> -->
+          <td><span class="badge bg-{{ patient.risk_colour }} {% if not patient.risk %}text-secondary{% endif %}">{% if patient.risk %}{{ patient.get_risk_display }}{% else %}Unidentified{% endif %}</span></td>
         </tr>
         {% endfor %}
       </tbody>

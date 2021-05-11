@@ -3,3 +3,9 @@ SEX_CHOICES = [
     ("F", "Female"),
     ("NB", "Non-binary"),
 ]
+
+RISK_CHOICES = [
+    ("high", "High"),
+    ("medium", "Medium"),
+    ("low", "Low"),
+]

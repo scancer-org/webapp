@@ -2,7 +2,7 @@ from dateutil.relativedelta import relativedelta
 from django.db import models
 from django.utils import timezone
 
-from .choices import SEX_CHOICES
+from .choices import RISK_CHOICES, SEX_CHOICES
 
 
 class Patient(models.Model):
@@ -13,6 +13,7 @@ class Patient(models.Model):
     name = models.CharField(max_length=255, blank=True)
     doctor = models.CharField(max_length=255, blank=True)
     note = models.TextField(blank=True)
+    risk = models.CharField(max_length=25, choices=RISK_CHOICES, blank=True)
 
     def __str__(self):
         return f"{self.name} ({self.age.years}{self.sex})"
@@ -23,3 +24,14 @@ class Patient(models.Model):
         now = timezone.now().date()
         age = relativedelta(now, self.date_of_birth)
         return age
+
+    @property
+    def risk_colour(self):
+        "Get a Bootstrap colour name associated with the examination risk"
+        colour_map = {"high": "danger", "medium": "warning", "low": "success"}
+        return colour_map.get(self.risk, "light")
+
+    @property
+    def last_examination(self):
+        "Return the last examination for a patient"
+        return self.examination_set.last()

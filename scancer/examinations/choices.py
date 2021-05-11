@@ -3,7 +3,7 @@ KIND_CHOICES = [
     ("mammogram", "Mammogram"),
     ("ultrasound", "Ultrasound"),
     ("mri", "MRI"),
-    ("biopsy", "Lymph node biopsy"),
+    ("biopsy", "Lymph Node Biopsy"),
 ]
 
 PRIORITY_CHOICES = [
