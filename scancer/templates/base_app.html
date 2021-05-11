@@ -51,6 +51,9 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown5">
               <li><a class="dropdown-item" href="{% url 'account_email' %}">Change Email</a></li>
               <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
+              {% if request.user.is_staff %}
+              <li><a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank">Administer App</a></li>
+              {% endif %}
               <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
             </ul>
           </li>
