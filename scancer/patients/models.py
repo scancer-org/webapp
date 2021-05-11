@@ -1,5 +1,6 @@
 from dateutil.relativedelta import relativedelta
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 from .choices import RISK_CHOICES, SEX_CHOICES
@@ -17,6 +18,9 @@ class Patient(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.age.years}{self.sex})"
+
+    def get_absolute_url(self):
+        return reverse("patients:detail", args=[str(self.id)])
 
     @property
     def age(self):

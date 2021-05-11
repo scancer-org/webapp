@@ -40,7 +40,7 @@
         <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
           <dl class="row">
             <dt class="col-sm-5">Patient Name</dt>
-            <dd class="col-sm-7">{{ examination.patient.name }}</dd>
+            <dd class="col-sm-7"><a href="{{ examination.patient.get_absolute_url }}">{{ examination.patient.name }}</a></dd>
             <dt class="col-sm-5">Hospital&nbsp;Number</dt>
             <dd class="col-sm-7">{{ examination.patient.hospital_number }}</dd>
             <dt class="col-sm-5">Sex</dt>

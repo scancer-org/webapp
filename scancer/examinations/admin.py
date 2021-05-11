@@ -5,7 +5,7 @@ from .models import Examination, Scan
 
 class ScanInline(admin.StackedInline):
     model = Scan
-    extra = 1
+    extra = 0
     max_num = 10
 
 

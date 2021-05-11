@@ -25,13 +25,13 @@
           <th>Doctor</th>
           <th>Last Examination</th>
           <!-- <th>Upcoming Examination</th> -->
-          <th>Risk</th>
+          <th>Risk Estimate</th>
         </tr>
       </thead>
       <tbody>
         {% for patient in patients %}
         <tr>
-          <td><a href="#">{{ patient.name }}</a></td>
+          <td><a href="{{ patient.get_absolute_url }}">{{ patient.name }}</a></td>
           <td>{{ patient.hospital_number }}</td>
           <td>{{ patient.age.years }} Years {{ patient.age.months }} Months</td>
           <td>{{ patient.get_sex_display }}</td>
