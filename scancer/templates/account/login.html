@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 
-{% load i18n %}
-{% load crispy_forms_tags %}
-
 {% block title %}Sign in to access the Scancer webapp prototype{% endblock title %}
 
 {% block inline_css %}
@@ -38,7 +35,7 @@
 
 {% block content %}
 <main class="form-auth">
-  <form class="login" method="POST" action="{% url 'account_login' %}">
+  <form class="login" method="post" action="{% url 'account_login' %}">
     {% csrf_token %}
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
     <p>If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.</p>
@@ -65,4 +62,4 @@
     <p class=""><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
   </form>
 </main>
-{% endblock %}
+{% endblock content %}
