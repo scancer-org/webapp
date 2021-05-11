@@ -3,23 +3,23 @@
 {% block header %}
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Navigation Menu">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Scancer</a>
+    <a class="navbar-brand" href="{% url 'examinations:list' %}">Scancer</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuButton" aria-controls="menuButton" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="menuButton">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">Patients</a>
+          <a class="nav-link dropdown-toggle {% if 'patients' in request.path %}active{% endif %}" href="#" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">Patients</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown1">
             <li><a class="dropdown-item" href="{% url 'patients:list' %}">All Patients</a></li>
             <li><a class="dropdown-item" href="#">High Risk</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown2" data-bs-toggle="dropdown" aria-expanded="false">Examinations</a>
+          <a class="nav-link dropdown-toggle {% if 'examinations' in request.path %}active{% endif %}" href="#" id="dropdown2" data-bs-toggle="dropdown" aria-expanded="false">Examinations</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown2">
-            <li><a class="dropdown-item" href="{% url 'examinations:list' %}">Manual Exams</a></li>
+            <li><a class="dropdown-item disabled" href="#">Manual Exams</a></li>
             <li><a class="dropdown-item disabled" href="#">Mammograms</a></li>
             <li><a class="dropdown-item disabled" href="#">Ultrasounds</a></li>
             <li><a class="dropdown-item disabled" href="#">MRIs</a></li>
@@ -30,7 +30,7 @@
       <div class="d-flex">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown3" data-bs-toggle="dropdown" aria-expanded="false">API Tests</a>
+            <a class="nav-link dropdown-toggle {% if 'api-tests' in request.path %}active{% endif %}" href="#" id="dropdown3" data-bs-toggle="dropdown" aria-expanded="false">API Tests</a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown3">
               <li><a class="dropdown-item" href="{% url 'api_tests:pcam-classification' %}">PCam Classification</a></li>
               <li><a class="dropdown-item" href="{% url 'api_tests:pcam-classification-serve-info' %}">PCam Classification (Serve Info)</a></li>
@@ -51,7 +51,7 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown5">
               <li><a class="dropdown-item" href="{% url 'users:detail' request.user.username  %}">Your Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
-              <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a></li>
+              <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign out</a></li>
             </ul>
           </li>
         </ul>
