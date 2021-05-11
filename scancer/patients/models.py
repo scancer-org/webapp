@@ -11,6 +11,7 @@ class Patient(models.Model):
     date_of_birth = models.DateField()
     sex = models.CharField(max_length=5, choices=SEX_CHOICES, blank=True)
     name = models.CharField(max_length=255, blank=True)
+    doctor = models.CharField(max_length=255, blank=True)
     note = models.TextField(blank=True)
 
     def __str__(self):
