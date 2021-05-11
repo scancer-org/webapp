@@ -1,15 +1,16 @@
 from io import BytesIO
 
 import openslide
-from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from openslide import open_slide
 from openslide.deepzoom import DeepZoomGenerator
 
-from .models import Examination
+from .models import Examination, Scan
 
 DEEPZOOM_SLIDE = None
 DEEPZOOM_FORMAT = "jpeg"
@@ -18,7 +19,6 @@ DEEPZOOM_OVERLAP = 1
 DEEPZOOM_LIMIT_BOUNDS = True
 DEEPZOOM_TILE_QUALITY = 75
 SLIDE_NAME = "slide"
-SLIDE_FILE = str(settings.APPS_DIR / "examples" / "normal_001.tif")
 
 
 class ExaminationListView(LoginRequiredMixin, ListView):
@@ -45,19 +45,26 @@ class ExaminationDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        raw_slide = open_slide(SLIDE_FILE)
-        context["slide_url"] = "/examinations/slide.dzi"
-        try:
-            mpp_x = raw_slide.properties[openslide.PROPERTY_NAME_MPP_X]
-            mpp_y = raw_slide.properties[openslide.PROPERTY_NAME_MPP_Y]
-            context["slide_mpp"] = (float(mpp_x) + float(mpp_y)) / 2
-        except (KeyError, ValueError):
-            context["slide_mpp"] = 0
+        # TODO: Extend the following to allow multiple slides in the
+        # future
+        scan = self.object.scan_set.first()
+        if scan:
+            raw_slide = open_slide(scan.file)
+            context["slide_url"] = reverse(
+                "examinations:detail-slide-dzi", args=[scan.pk]
+            )
+            try:
+                mpp_x = raw_slide.properties[openslide.PROPERTY_NAME_MPP_X]
+                mpp_y = raw_slide.properties[openslide.PROPERTY_NAME_MPP_Y]
+                context["slide_mpp"] = (float(mpp_x) + float(mpp_y)) / 2
+            except (KeyError, ValueError):
+                context["slide_mpp"] = 0
         return context
 
 
-def slide_dzi(request):
-    raw_slide = open_slide(SLIDE_FILE)
+def slide_dzi(request, pk):
+    scan = get_object_or_404(Scan, pk=pk)
+    raw_slide = open_slide(scan.file)
     slide = DeepZoomGenerator(
         raw_slide,
         tile_size=DEEPZOOM_TILE_SIZE,
@@ -68,8 +75,9 @@ def slide_dzi(request):
     return HttpResponse(response, content_type="application/xml")
 
 
-def tile(request, level, col, row):
-    raw_slide = open_slide(SLIDE_FILE)
+def tile(request, pk, level, col, row):
+    scan = get_object_or_404(Scan, pk=pk)
+    raw_slide = open_slide(scan.file)
     slide = DeepZoomGenerator(
         raw_slide,
         tile_size=DEEPZOOM_TILE_SIZE,
