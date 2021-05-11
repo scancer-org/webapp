@@ -1,0 +1,10 @@
+{% extends "base_app.html" %}
+{% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}
+
+{% block content %}
+<main class="row mt-4">
+  <div class="col-md-4 offset-md-4">
+    {% block inner %}{% endblock %}
+  </div>
+</main>
+{% endblock %}
