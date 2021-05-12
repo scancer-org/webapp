@@ -8,7 +8,7 @@
 <main class="container">
   <div class="row">
     <div class="col-sm-12 col-md-10 col-lg-8">
-      <h1>About This Project</h1>
+      <h1>About the Scancer Project</h1>
       <p class="lead">Scancer is a collaborative effort to increase access to the early detection of breast cancer.</p>
       <p>Breast cancer is the most diagnosed cancer among women worldwide, accounting for 1 in 4 cancer cases. In 2020, there were an estimated 684,996 deaths from breast cancer, with a disproportionate number of these deaths occurring in low-resource settings.&nbsp;[1]</p>
     </div>
@@ -24,17 +24,23 @@
   <div class="row">
     <div class="col-sm-12 col-md-10 col-lg-8">
       <p>Survival rates for breast cancer are very high when the cancer is detected early and where treatment is available. Unfortunately, 50 to 80% of breast cancer cases are diagnosed at an advanced stage in many low- and middle-income countries, when the cancer is usually incurable.&nbsp;[1]</p>
+      <p>One of the primary reasons for this is that the tests and procedures used to diagnose this disease (such as <a href="https://en.wikipedia.org/wiki/Mammography">mammography</a> and <a href="https://en.wikipedia.org/wiki/Sentinel_lymph_node">lymph node biopsy</a>) require a lot of human expertise, which is very limited. Fortunately, most of these diagnostic procedures involve visual inspection of scans, which is ideally suited to the strengths of deep-learning-based computer vision techniques.</p>
+      <p>The specific procedures that are used to diagnose breast cancer [2] are depicted in the following graphic, and the ones that would most benefit from computer vision are denoted in purple. [3]</p>
+      <div class="text-center">
+        <img src="{% static 'images/about/cancer-diagnosis-deep-learning.svg' %}" class="img-fluid img-thumbnail mb-3" alt="Specific procedures that are used to diagnose breast cancer">
+        </div>
+      <p>There are many groups that realise this, and so there exist <a href="https://scholar.google.com/scholar?q=deep+learning+breast+cancer"><em>numerous</em> published papers</a> that describe how deep learning models help improve different aspects of diagnosis. But there isn’t a central place (that we know of) that collects the best of these ideas into a comprehensive solution that is clinically relevant and accessible. <strong>This is the goal of the Scancer project.</strong></p>
+      <h2>How the Project Is Structured</h2>
       <ul>
-        <li>Diagnosis involves many stages, including manual exams, mammograms, MRIs, biopsies …</li>
-        <li>Many of these things are hard to do, and can be sped up with computer vision assisting human experts</li>
-        <li>There exist many papers and models out there on bits and pieces of this, but no comprehensive solution (that we know of that) is clinically relevant</li>
         <li>Here is how we have chosen to structure our solution: plan, philosophy</li>
         <li>Some detailed notes and screenshots on what we have working so far, and pointers to GitHub repos</li>
         <li>Where we are going next and how you can help</li>
       </ul>
       <h2>References</h2>
       <ol>
-        <li>Reference</li>
+        <li>https://www.uicc.org/what-we-do/thematic-areas-work/breast-cancer</li>
+        <li>https://www.mayoclinic.org/diseases-conditions/breast-cancer/diagnosis-treatment/drc-20352475</li>
+        <li>https://www.nature.com/articles/s41746-020-00376-2</li>
       </ol>
     </div>
   </div>
