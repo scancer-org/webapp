@@ -273,4 +273,4 @@ scancer/media/
 .pytest_cache/
 
 
-*.tif
+scancer/examples/*.tif

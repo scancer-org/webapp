@@ -3,7 +3,7 @@
 {% block header %}
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Navigation Menu">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'patients:list' %}">Scancer</a>
+    <a class="navbar-brand" href="{% url 'patients:list' %}">Scancer Prototype</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuButton" aria-controls="menuButton" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -63,3 +63,12 @@
   </div>
 </nav>
 {% endblock header %}
+
+{% block footer %}
+<footer class="mt-auto py-4 bg-light text-muted">
+  <div class="container-fluid">
+    <p class="mb-1">Scancer is a collaborative effort to increase access to the early detection of breast cancer. <a href="{% url 'contribute' %}">Learn how to contribute</a>.</p>
+    <p class="mb-0">&copy; 2021 Harish Narayanan and Daniel Hen</p>
+  </div>
+</footer>
+{% endblock footer %}

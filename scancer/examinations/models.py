@@ -13,6 +13,10 @@ def scan_images_path():
     return os.path.join(settings.APPS_DIR, "examples")
 
 
+def analysis_images_path():
+    return os.path.join(settings.ROOT_DIR, "staticfiles", "images", "heatmaps")
+
+
 class Examination(models.Model):
 
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
@@ -33,9 +37,25 @@ class Examination(models.Model):
 
     @property
     def priority_colour(self):
-        "Get a Bootstrap colour name associated with the examination priority"
+        "Get a Bootstrap colour name associated with the examination priority."
         colour_map = {"high": "danger", "medium": "warning", "low": "success"}
         return colour_map.get(self.priority, "secondary")
+
+    @property
+    def first_scan(self):
+        "Get the first scan for an examination."
+        return self.scan_set.first()
+
+    @property
+    def first_scan_heatmap_path(self):
+        "Get the file path for the heatmap of the first scan for an examination."
+        first_scan = self.first_scan
+        if first_scan.heatmap:
+            return os.path.join(
+                "images", "heatmaps", os.path.basename(first_scan.heatmap)
+            )
+        else:
+            return None
 
 
 class Scan(models.Model):
@@ -43,7 +63,8 @@ class Scan(models.Model):
     examination = models.ForeignKey(Examination, on_delete=models.CASCADE)
     date = models.DateTimeField()
     file = models.FilePathField(path=scan_images_path)
-    # TODO: Incorporate more fields for analysis data, human
+    heatmap = models.FilePathField(path=analysis_images_path, blank=True, default="")
+    # TODO: Incorporate more fields for more analysis data, human
     # annotations and notes
 
     def __str__(self):
