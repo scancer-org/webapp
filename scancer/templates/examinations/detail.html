@@ -64,13 +64,15 @@
           </dl>
         </div>
         <div class="tab-pane fade" id="analysis" role="tabpanel" aria-labelledby="analysis-tab">
-          <button type="button" class="btn btn-outline-primary mb-3">Load Heatmap</button>
+          <h2>Automatic Analysis</h2>
+          <p>Scancer is being built to support the following, either in real-time or batch offline mode.</p>
+          <button type="button" class="btn btn-outline-primary btn-sm mb-2">Load Pre-Generated Heatmap</button>
 
-          <button type="button" class="btn btn-outline-primary disabled mb-1">Auto Classification in Progress</button>
-          <div class="progress mb-3">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
-          </div>
-          <button type="button" class="btn btn-primary disabled mb-3">Manually Annotate</button>
+          <button type="button" class="btn btn-outline-primary btn-sm disabled mb-4">Auto Classify Scan</button>
+          <h2>Manual Confirmation</h2>
+          <p>Once the deep learning system presents its analysis, a pathologist can confirm or update the findings.</p>
+          <button type="button" class="btn btn-primary btn-sm disabled mb-2">Confirm Analysis</button><br>
+          <button type="button" class="btn btn-outline-primary btn-sm disabled">Manually Annotate</button>
         </div>
         <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
           <div>
