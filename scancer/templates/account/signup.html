@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block head_title %}{% trans "}Sign up to access the Scancer webapp prototype" %}{% endblock %}
+{% block head_title %}{% trans "Sign up to access the Scancer webapp prototype" %}{% endblock %}
 
 {% block inner %}
 <h1>{% trans "Please Sign Up" %}</h1>
@@ -16,7 +16,8 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button class="btn btn-primary" type="submit">{% trans "Sign Up" %}</button>
+  <button class="btn btn-primary mb-3" type="submit">{% trans "Sign Up" %}</button>
 </form>
 
+<p class="text-muted">{% blocktrans %}Email from the Scancer server is sometimes accidentally flagged as spam by mail clients such as Gmail. Please remember to check your spam box if you do not receive your email after signing up.{% endblocktrans %}</p>
 {% endblock %}
