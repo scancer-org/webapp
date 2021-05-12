@@ -13,6 +13,10 @@ def scan_images_path():
     return os.path.join(settings.APPS_DIR, "examples")
 
 
+def analysis_images_path():
+    return os.path.join(settings.APPS_DIR, "examples", "analysis")
+
+
 class Examination(models.Model):
 
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
@@ -43,7 +47,8 @@ class Scan(models.Model):
     examination = models.ForeignKey(Examination, on_delete=models.CASCADE)
     date = models.DateTimeField()
     file = models.FilePathField(path=scan_images_path)
-    # TODO: Incorporate more fields for analysis data, human
+    heatmap = models.FilePathField(path=analysis_images_path, blank=True, default="")
+    # TODO: Incorporate more fields for more analysis data, human
     # annotations and notes
 
     def __str__(self):
