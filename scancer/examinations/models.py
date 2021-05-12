@@ -14,7 +14,7 @@ def scan_images_path():
 
 
 def analysis_images_path():
-    return os.path.join(settings.APPS_DIR, "examples", "analysis")
+    return os.path.join(settings.ROOT_DIR, "staticfiles", "images", "heatmaps")
 
 
 class Examination(models.Model):
@@ -37,7 +37,7 @@ class Examination(models.Model):
 
     @property
     def priority_colour(self):
-        "Get a Bootstrap colour name associated with the examination priority"
+        "Get a Bootstrap colour name associated with the examination priority."
         colour_map = {"high": "danger", "medium": "warning", "low": "success"}
         return colour_map.get(self.priority, "secondary")
 
@@ -45,6 +45,17 @@ class Examination(models.Model):
     def first_scan(self):
         "Get the first scan for an examination."
         return self.scan_set.first()
+
+    @property
+    def first_scan_heatmap_path(self):
+        "Get the file path for the heatmap of the first scan for an examination."
+        first_scan = self.first_scan
+        if first_scan.heatmap:
+            return os.path.join(
+                "images", "heatmaps", os.path.basename(first_scan.heatmap)
+            )
+        else:
+            return None
 
 
 class Scan(models.Model):
