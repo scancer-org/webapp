@@ -43,6 +43,8 @@ class Scan(models.Model):
     examination = models.ForeignKey(Examination, on_delete=models.CASCADE)
     date = models.DateTimeField()
     file = models.FilePathField(path=scan_images_path)
+    # TODO: Incorporate more fields for analysis data, human
+    # annotations and notes
 
     def __str__(self):
         return f"{self.file} ({self.date})"
