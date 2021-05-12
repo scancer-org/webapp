@@ -41,6 +41,11 @@ class Examination(models.Model):
         colour_map = {"high": "danger", "medium": "warning", "low": "success"}
         return colour_map.get(self.priority, "secondary")
 
+    @property
+    def first_scan(self):
+        "Get the first scan for an examination."
+        return self.scan_set.first()
+
 
 class Scan(models.Model):
 

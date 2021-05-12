@@ -1,6 +1,7 @@
 from io import BytesIO
 
 import openslide
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -47,7 +48,7 @@ class ExaminationDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         # TODO: Extend the following to allow multiple slides in the
         # future
-        scan = self.object.scan_set.first()
+        scan = self.object.first_scan
         if scan:
             raw_slide = open_slide(scan.file)
             context["slide_url"] = reverse(
@@ -62,6 +63,7 @@ class ExaminationDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
+@login_required
 def slide_dzi(request, pk):
     scan = get_object_or_404(Scan, pk=pk)
     raw_slide = open_slide(scan.file)
@@ -75,6 +77,7 @@ def slide_dzi(request, pk):
     return HttpResponse(response, content_type="application/xml")
 
 
+@login_required
 def tile(request, pk, level, col, row):
     scan = get_object_or_404(Scan, pk=pk)
     raw_slide = open_slide(scan.file)
