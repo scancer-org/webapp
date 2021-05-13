@@ -55,12 +55,12 @@
             <dd class="col-sm-7">{{ examination.healthcare_professional }}</dd>
             <dt class="col-sm-5">Risk Level</dt>
             <dd class="col-sm-7">
-              <span class="badge bg-{{ examination.priority_colour }}">{{ examination.get_priority_display }}</span>
+	      <span class="badge bg-{{ examination.priority_colour }} {% if not examination.priority %}text-secondary{% endif %}">{% if examination.priority %}{{ examination.get_priority_display }}{% else %}Unidentified{% endif %}</span>
             </dd>
             <!-- <dt class="col-sm-5">Status</dt> -->
             <!-- <dd class="col-sm-7"> -->
-            <!--   <span class="badge bg-warning">Unprocessed</span> -->
-            <!-- </dd> -->
+              <!--   <span class="badge bg-warning">Unprocessed</span> -->
+              <!-- </dd> -->
           </dl>
         </div>
         <div class="tab-pane fade" id="analysis" role="tabpanel" aria-labelledby="analysis-tab">

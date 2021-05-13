@@ -1,19 +1,34 @@
 {% extends "base.html" %}
 
-{% load i18n %}
+{% load static %}
 
-{% block title %}Contribute to the Scancer Project{% endblock title %}
+{% block title %}Contributing to the Scancer Project{% endblock title %}
 
 {% block content %}
-<main>
-  <div class="container">
-    <p class="lead">This reiterates the goals of the project and asks for help from the following stakeholders:</p>
-    <ul>
-      <li>ML Engineers</li>
-      <li>Domain experts (e.g. pathologists) — labelling data and testing prototype</li>
-      <li>Product designers</li>
-      <li>Companies (e.g. money, compute credits, …)</li>
-    </ul>
+<main class="container mb-3">
+  <div class="row">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <h1>Contributing to the Scancer Project</h1>
+      <p class="lead">Ambitious goals require a team effort.</p>
+      <p>The Scancer project <a href="{% url 'about' %}">aims to bring the power of computer vision</a> to all areas of breast cancer detection that would benefit from it. We have highlighted these areas in purple in the graphic below.</p>
+      <div class="text-center mb-1">
+        <img src="{% static 'images/about/cancer-diagnosis-deep-learning.svg' %}" class="img-fluid mb-3" alt="Specific procedures that are used to diagnose breast cancer">
+      </div>
+      <p>Thus far, we have focused entirely on small subset of histopathology (image classification on patches of slides) and worked out an ML pipeline and prototype web app around it. <a href="https://github.com/scancer-org">Everything we’ve built is released open source</a> (MIT License) and <a href="https://github.com/scancer-org/setup">in a reproducible form</a>, so that anyone can learn from, use, and contribute to the effort. We encourage the community to contribute models and workflows for other diagnostic procedures.</p>
+      <p>In particular:</p>
+      <ul>
+        <li>
+          If you’re a <strong>medical domain expert</strong> (doctor, radiologist, histopathologist, ...), you can help by:
+          <ul>
+            <li>Providing your own unique datasets.</li>
+            <li>Manually labelling existing datasets.</li>
+            <li><a href="{% url 'account_signup' %}">Trying out our prototypes</a> and giving us feedback on how well they fit your everyday work.</li>
+          </ul>
+        </li>
+        <li>If you’re a <strong>a machine learning practitioner</strong>, you can help train even more robust models.</li>
+        <li><strong>Companies</strong> are always welcome to help us financially to cover compute and hosting costs.</li>
+      </ul>
+      <p>Please <a href="{% url 'account_signup' %}" class="btn btn-primary btn-sm">Sign Up</a> or <a href="mailto:mail@harishnarayanan.org" class="btn btn-outline-primary btn-sm">Write to Us</a> if interested.</p>
   </div>
 </main>
 {% endblock content %}
