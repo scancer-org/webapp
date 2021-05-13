@@ -39,7 +39,7 @@ class Examination(models.Model):
     def priority_colour(self):
         "Get a Bootstrap colour name associated with the examination priority."
         colour_map = {"high": "danger", "medium": "warning", "low": "success"}
-        return colour_map.get(self.priority, "secondary")
+        return colour_map.get(self.priority, "light")
 
     @property
     def first_scan(self):

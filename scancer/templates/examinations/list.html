@@ -7,9 +7,9 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">All Lymph Node Biopsies</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
-      <a href="{% url 'examinations:list' %}?risk=high" class="btn btn-sm btn-outline-primary">
+      <a href="{% url 'examinations:list' %}{% if request.GET.risk != "high" %}?risk=high{% endif%}" class="btn btn-sm btn-outline-primary">
         <span data-feather="calendar"></span>
-        Show High Risk
+        {% if request.GET.risk != "high" %}Show High Risk{% else %}Show All Examinations{% endif %}
       </a>
     </div>
   </div>
@@ -38,7 +38,7 @@
           <td>{{ examination.patient.get_sex_display }}</td>
           <td>{{ examination.patient.doctor }}</td>
           <td>{{ examination.healthcare_professional }}</td>
-          <td><span class="badge bg-{{ examination.priority_colour }}">{{ examination.get_priority_display }}</span></td>
+          <td><span class="badge bg-{{ examination.priority_colour }} {% if not examination.priority %}text-secondary{% endif %}">{% if examination.priority %}{{ examination.get_priority_display }}{% else %}Unidentified{% endif %}</span></td>
         </tr>
         {% endfor %}
       </tbody>

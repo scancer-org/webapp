@@ -39,7 +39,7 @@
             <dd class="col-sm-7">{{ patient.last_examination.healthcare_professional }}</dd>
             <dt class="col-sm-5">Overall Risk</dt>
             <dd class="col-sm-7">
-              <span class="badge bg-{{ patient.risk_colour }}">{{ patient.get_risk_display }}</span>
+              <span class="badge bg-{{ patient.risk_colour }} {% if not patient.risk %}text-secondary{% endif %}">{% if patient.risk %}{{ patient.get_risk_display }}{% else %}Unidentified{% endif %}</span>
             </dd>
           </dl>
           <a class="btn btn-primary disabled" href="">Book Next Appointment</a>
