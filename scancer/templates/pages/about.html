@@ -10,28 +10,28 @@
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
       <h1>About the Scancer Project</h1>
       <p class="lead">Scancer aims to increase access to the early detection of breast cancer.</p>
-      <p>Breast cancer is the most diagnosed cancer among women worldwide, accounting for 1 in 4 cancer cases. In 2020, there were an estimated 684,996 deaths from breast cancer. A disproportionate number of these deaths occurring in low-resource settings.&nbsp;[1]</p>
+      <p>Breast cancer is the most diagnosed cancer among women worldwide. In 2020, there were an estimated 684,996 deaths from breast cancer. A disproportionate number of these deaths occurred in low-resource settings.&nbsp;[<a href="https://www.uicc.org/what-we-do/thematic-areas-work/breast-cancer">ref</a>]</p>
     </div>
   </div>
   <div class="row">
     <div class="offset-xl-1 col-xl-5 offset-lg-2 col-lg-8 mb-3">
-      <img src="{% static 'images/about/top-cancer.png' %}" class="img-fluid img-thumbnail" alt="Breast cancer is the most diagnosed cancer among women worldwide.">
+      <a href="https://gco.iarc.fr/today/online-analysis-map?v=2020&mode=cancer&mode_population=continents&population=900&populations=900&key=asr&sex=2&cancer=39&type=0&statistic=5&prevalence=0&population_group=0&ages_group%5B%5D=0&ages_group%5B%5D=17&nb_items=10&group_cancer=0&include_nmsc=1&include_nmsc_other=1&projection=natural-earth&color_palette=default&map_scale=quantile&map_nb_colors=5&continent=0&show_ranking=0&rotate=%255B10%252C0%255D"><img src="{% static 'images/about/top-cancer.png' %}" class="img-fluid img-thumbnail" alt="Breast cancer is the most diagnosed cancer among women worldwide."></a>
     </div>
     <div class="col-xl-5 offset-lg-2 col-lg-8 offset-xl-0 mb-3">
-      <img src="{% static 'images/about/mortality-rates.png' %}" class="img-fluid img-thumbnail" alt="Estimated age-standardized mortality rates (World) in 2020, breast, females, all ages.">
+      <a href="https://gco.iarc.fr/today/online-analysis-map?v=2020&mode=population&mode_population=continents&population=900&populations=900&key=asr&sex=2&cancer=20&type=1&statistic=5&prevalence=0&population_group=0&ages_group%5B%5D=0&ages_group%5B%5D=17&nb_items=10&group_cancer=0&include_nmsc=1&include_nmsc_other=1&projection=natural-earth&color_palette=default&map_scale=quantile&map_nb_colors=5&continent=0&show_ranking=0&rotate=%255B10%252C0%255D"><img src="{% static 'images/about/mortality-rates.png' %}" class="img-fluid img-thumbnail" alt="Estimated age-standardized mortality rates (World) in 2020, breast, females, all ages."></a>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
-      <p>Survival rates for breast cancer are high when the cancer is detected early and where treatment is available. Unfortunately, 50 to 80% of breast cancer cases are diagnosed at an advanced stage in many low- and middle-income countries. By this point, the cancer is usually incurable.&nbsp;[1]</p>
-      <p>One of the primary reasons for this is that the tests and procedures used to diagnose this disease (such as <a href="https://en.wikipedia.org/wiki/Mammography">mammography</a> and <a href="https://en.wikipedia.org/wiki/Sentinel_lymph_node">lymph node biopsy</a>) require a lot of human expertise, which is very limited. Fortunately, most of these diagnostic procedures involve visual inspection of scans, which is ideally suited to the strengths of deep-learning-based computer vision techniques.</p>
-      <p>The specific procedures that are used to diagnose breast cancer [2] are depicted in the following graphic. The ones that would most benefit from computer vision are denoted in purple. [3]</p>
+      <p>Survival rates for breast cancer are high when the cancer is detected early and where treatment is available. Unfortunately, 50 to 80% of breast cancer cases are diagnosed at an advanced stage in many low- and middle-income countries. By this point, the cancer is usually incurable.&nbsp;[<a href="https://www.uicc.org/what-we-do/thematic-areas-work/breast-cancer">ref</a>]</p>
+      <p>One of the primary reasons for this is that the tests and procedures used to diagnose this disease (such as <a href="https://en.wikipedia.org/wiki/Mammography">mammography</a> and <a href="https://en.wikipedia.org/wiki/Sentinel_lymph_node">lymph node biopsy</a>) require a lot of human expertise, which is very limited. Fortunately, most of these diagnostic procedures involve visual inspection of scans, which is ideally suited to the strengths of deep learning-based computer vision techniques.</p>
+      <p>There are many groups that realise this, and so there exist <a href="https://scholar.google.com/scholar?q=deep+learning+breast+cancer"><em>numerous</em> published papers</a> that describe how deep learning models <em>could</em> help improve different aspects of diagnosis. But there isn’t a central place (that we know of) that collects the best of these ideas into a comprehensive solution that is clinically relevant and accessible.</p>
+      <p><em>This is exactly what the Scancer project aims to do.</em></p>
+      <h2>How Do We Propose to Do This?</h2>
+      <p>The <a href="https://www.mayoclinic.org/diseases-conditions/breast-cancer/diagnosis-treatment/drc-20352475">specific procedures that are used to diagnose breast cancer</a> are depicted in the following graphic. The ones that would <a href="https://www.nature.com/articles/s41746-020-00376-2">most benefit from computer vision</a> are denoted in purple.</p>
       <div class="text-center">
         <img src="{% static 'images/about/cancer-diagnosis-deep-learning.svg' %}" class="img-fluid mb-3" alt="Specific procedures that are used to diagnose breast cancer">
       </div>
-      <p>There are many groups that realise this, and so there exist <a href="https://scholar.google.com/scholar?q=deep+learning+breast+cancer"><em>numerous</em> published papers</a> that describe how deep learning models help improve different aspects of diagnosis. But there isn’t a central place (that we know of) that collects the best of these ideas into a comprehensive solution that is clinically relevant and accessible.</p>
-      <p><em>This exactly what the Scancer project aims to do.</em></p>
-      <h2>How Do We Propose to Do This?</h2>
       <p>The approach we have chosen relies on the following key components:</p>
       <div class="text-center">
         <img src="{% static 'images/about/scancer-system-diagram.svg' %}" class="img-fluid mb-3" alt="A system-level diagram of the Scancer technology stack">
@@ -107,7 +107,7 @@
       <p class="text-danger">TODO: Insert some screenshots here. Something about the webapp serving two purposes: Working out the pipeline and prototype for gathering feedback on user-facing features.</p>
       <h2>Where We Are Going Next, and How You Can Help</h2>
       <p>Since this is a really open-ended and long term goal, we have worked out a full end-to-end prototype of this as the final project for this class. And beyond this class, we have tried to structure the project to be open to contributions in a systematic manner, so that others can help expand its scope.</p>
-       <p><a href="https://github.com/scancer-org">Everything we’ve built is released open source</a> (MIT License) and <a href="https://github.com/scancer-org/setup">in a reproducible form</a>, so that anyone can learn from, use and <a href="{% url 'contribute' %}">contribute to the effort</a>.</p>
+      <p><a href="https://github.com/scancer-org">Everything we’ve built is released open source</a> (MIT License) and <a href="https://github.com/scancer-org/setup">in a reproducible form</a>, so that anyone can learn from, use and <a href="{% url 'contribute' %}">contribute to the effort</a>.</p>
       <p>In particular:</p>
       <ul>
         <li>Domain experts can help with labelling data, provide their own unique datasets, and  help us understand issues in their everyday work</li>
@@ -116,9 +116,6 @@
       </ul>
       <h2>References</h2>
       <ol>
-        <li>https://www.uicc.org/what-we-do/thematic-areas-work/breast-cancer</li>
-        <li>https://www.mayoclinic.org/diseases-conditions/breast-cancer/diagnosis-treatment/drc-20352475</li>
-        <li>https://www.nature.com/articles/s41746-020-00376-2</li>
         <li>https://camelyon17.grand-challenge.org/Background/</li>
       </ol>
     </div>
