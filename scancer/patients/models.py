@@ -14,7 +14,10 @@ class Patient(models.Model):
     name = models.CharField(max_length=255, blank=True)
     doctor = models.CharField(max_length=255, blank=True)
     note = models.TextField(blank=True)
-    risk = models.CharField(max_length=25, choices=RISK_CHOICES, blank=True)
+    risk = models.IntegerField(choices=RISK_CHOICES, null=True, blank=True)
+
+    class Meta:
+        ordering = ["-risk"]
 
     def __str__(self):
         return f"{self.name} ({self.age.years}{self.sex})"
@@ -32,7 +35,7 @@ class Patient(models.Model):
     @property
     def risk_colour(self):
         "Get a Bootstrap colour name associated with the examination risk"
-        colour_map = {"high": "danger", "medium": "warning", "low": "success"}
+        colour_map = {30: "danger", 20: "warning", 10: "success"}
         return colour_map.get(self.risk, "light")
 
     @property
