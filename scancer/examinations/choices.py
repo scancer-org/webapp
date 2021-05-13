@@ -7,7 +7,13 @@ KIND_CHOICES = [
 ]
 
 PRIORITY_CHOICES = [
-    ("high", "High"),
-    ("medium", "Medium"),
-    ("low", "Low"),
+    (30, "High"),
+    (20, "Medium"),
+    (10, "Low"),
 ]
+
+PRIORITY_CHOICES_REVERSE = {
+    "high": 30,
+    "medium": 20,
+    "low": 10,
+}

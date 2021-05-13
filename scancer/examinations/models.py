@@ -23,11 +23,11 @@ class Examination(models.Model):
     date = models.DateTimeField()
     kind = models.CharField(max_length=25, choices=KIND_CHOICES)
     note = models.TextField(blank=True)
-    priority = models.CharField(max_length=25, choices=PRIORITY_CHOICES, blank=True)
+    priority = models.IntegerField(choices=PRIORITY_CHOICES, null=True, blank=True)
     healthcare_professional = models.CharField(max_length=50, blank=True)
 
     class Meta:
-        ordering = ["-date"]
+        ordering = ["-priority"]
 
     def __str__(self):
         return f"{self.kind} ({self.date})"
@@ -38,7 +38,7 @@ class Examination(models.Model):
     @property
     def priority_colour(self):
         "Get a Bootstrap colour name associated with the examination priority."
-        colour_map = {"high": "danger", "medium": "warning", "low": "success"}
+        colour_map = {30: "danger", 20: "warning", 10: "success"}
         return colour_map.get(self.priority, "light")
 
     @property

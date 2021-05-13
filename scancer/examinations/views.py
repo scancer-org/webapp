@@ -13,6 +13,7 @@ from openslide import open_slide
 from openslide.deepzoom import DeepZoomGenerator
 from PIL import Image, ImageOps
 
+from .choices import PRIORITY_CHOICES_REVERSE
 from .models import Examination, Scan
 
 DEEPZOOM_SLIDE = None
@@ -33,7 +34,7 @@ class ExaminationListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         risk = self.request.GET.get("risk")
         if risk:
-            return Examination.objects.filter(priority=risk)
+            return Examination.objects.filter(priority=PRIORITY_CHOICES_REVERSE[risk])
         else:
             return Examination.objects.all()
 

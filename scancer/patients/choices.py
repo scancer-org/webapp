@@ -5,7 +5,13 @@ SEX_CHOICES = [
 ]
 
 RISK_CHOICES = [
-    ("high", "High"),
-    ("medium", "Medium"),
-    ("low", "Low"),
+    (30, "High"),
+    (20, "Medium"),
+    (10, "Low"),
 ]
+
+RISK_CHOICES_REVERSE = {
+    "high": 30,
+    "medium": 20,
+    "low": 10,
+}
