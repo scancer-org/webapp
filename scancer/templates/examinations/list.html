@@ -38,7 +38,7 @@
           <td>{{ examination.patient.get_sex_display }}</td>
           <td>{{ examination.patient.doctor }}</td>
           <td>{{ examination.healthcare_professional }}</td>
-          <td><span class="badge bg-{{ examination.priority_colour }}">{{ examination.get_priority_display }}</span></td>
+          <td><span class="badge bg-{{ examination.priority_colour }} {% if not examination.priority %}text-secondary{% endif %}">{% if examination.priority %}{{ examination.get_priority_display }}{% else %}Unidentified{% endif %}</span></td>
         </tr>
         {% endfor %}
       </tbody>
