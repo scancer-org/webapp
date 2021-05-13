@@ -5,37 +5,21 @@
 {% block title %}The Scancer Project{% endblock title %}
 
 {% block content %}
-<main>
-  <div class="container">
-    <div class="row flex-lg-row-reverse align-items-center g-5 pb-4">
-      <div class="col-sm-8 col-lg-6">
-        <img src="{% static 'images/scan-placeholder.png' %}" class="d-block mx-lg-auto img-fluid border" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+<main class="container">
+  <div class="px-4 pt-3 text-center">
+    <h1 class="display-4 fw-bold">Early Detection Saves Lives</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Breast cancer diagnosis is time-consuming, and histopathologists are overwhelmed by more slides than they have time to review. We’re developing Scancer to help histopathologists everywhere prioritise slides and identify metastases faster with greater accuracy.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-4 me-sm-3">Be a Part of Our Mission</a>
+        <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-lg px-4">Learn More</a>
       </div>
-      <div class="col-lg-6">
-        <h1 class="display-6 fw-bold lh-1 mb-3">33% more metastases found.<br>Thousands of lives saved.</h1>
-        <p class="lead">Histopathologists who use our Scancer help more patients every day. Our assistant identifies metastases and prioritises high-risk scans with n% higher accuracy and in nx less time with state of the art computer vision.</p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-4 me-md-2">Be a part of our mission</a>
-        </div>
+    </div>
+    <div class="overflow-hidden" style="max-height: 40vh;">
+      <div class="container px-5">
+        <img src="{% static 'images/about/scan-detail.png' %}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="800" height="500" loading="lazy">
       </div>
     </div>
   </div>
-
-<div class="container py-3">
-  <div class="row g-5">
-    <div class="feature col-md-4">
-      <h2 class="h3">Focus your expertise on the patients who most need it</h2>
-      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-    </div>
-    <div class="feature col-md-4">
-      <h2 class="h3">Apply your detection skills to most relevant scan areas</h2>
-      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-    </div>
-    <div class="feature col-md-4">
-      <h2 class="h3">Something about burnout reduction?</h2>
-      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-    </div>
-  </div>
-</div>
 </main>
 {% endblock content %}
