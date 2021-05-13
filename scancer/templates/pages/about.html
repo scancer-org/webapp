@@ -58,7 +58,7 @@
         <li>There exists high quality data to train from, e.g. the <a href="https://camelyon16.grand-challenge.org">Camelyon 16 Grand Challenge</a>.</li>
       </ol>
       <p>Because the data from the Camelyon 16 challenge is really large (<a href="https://drive.google.com/drive/folders/0BzsdkU4jWx9Bb19WNndQTlUwb2M">of the order of 2 GB <em>per</em> slide scan</a>), our initial training efforts have focused on a simplified dataset derived from it. This is called the <a href="https://github.com/basveeling/pcam">PatchCamelyon (PCam)</a> dataset, and consists of 327,680 color images (96px &times; 96px) extracted from the full histopathologic scans of lymph node sections. We then proceeded to perform inference on some samples from the larger original data.</p>
-      <p>Our progress thus far is documented in the table below and the screenshots that follow.</p>
+      <p>Our progress thus far is documented in the table below.</p>
     </div>
   </div>
   <div class="row">
@@ -124,8 +124,36 @@
   </div>
   <div class="row">
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
-      <p>Here are a collection of screenshots from these different components.</p>
-      <p class="text-danger">TODO: Insert some screenshots here. Something about the webapp serving two purposes: Working out the pipeline and prototype for gathering feedback on user-facing features.</p>
+      <p>For a more visual indication of progress, here are some screenshots of the different components. The screenshots cover the functioning pipeline, as well as a web app prototype that aims to gather feedback from domain experts.</p>
+      <!-- TODO: Add more screenshots of the following:
+                 1. Running a training sweep on W&B to get a good baseline model for PCam.
+                 2. Uploading the model to the model store or seeing its running parameters.
+                 3. Testing the API from the web app.
+                 4. Show high risk scans
+                 5. Show high risk patients
+      -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-xl-1 col-xl-7 offset-lg-2 col-lg-8 mb-3">
+      <div class="card">
+        <img src="{% static 'images/about/scan-detail.png' %}" class="card-img-top" alt="Visualisation of a Whole Slide Image (WSI) using a Google Maps style zoom interface">
+        <div class="card-body">
+          <p class="card-text">Visualisation of a Whole Slide Image (WSI) using a Google Maps style zoom interface.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 offset-lg-2 col-lg-8 offset-xl-0 mb-3">
+      <div class="card">
+        <img src="{% static 'images/about/scan-detail-heatmap.png' %}" class="card-img-top" alt="A heatmap of potentially cancerous tissue">
+        <div class="card-body">
+          <p class="card-text">An offline rendered heatmap to highlight potential regions with cancerous tissue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
       <h2>Where We Are Going Next, and How You Can Help</h2>
       <p>Since this is a really open-ended and long term goal, we have worked out a full end-to-end prototype of this as the final project for this class. And beyond this class, we have tried to structure the project to be open to contributions in a systematic manner, so that others can help expand its scope.</p>
       <p><a href="https://github.com/scancer-org">Everything we’ve built is released open source</a> (MIT License) and <a href="https://github.com/scancer-org/setup">in a reproducible form</a>, so that anyone can learn from, use and <a href="{% url 'contribute' %}">contribute to the effort</a>.</p>
