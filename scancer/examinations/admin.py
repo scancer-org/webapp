@@ -13,7 +13,7 @@ class ExaminationAdmin(admin.ModelAdmin):
     inlines = [
         ScanInline,
     ]
-    list_display = ("kind", "date", "patient", "healthcare_professional", "priority")
+    list_display = ("kind", "date", "patient", "healthcare_professional", "note", "priority")
     list_filter = ("priority",)
 
 

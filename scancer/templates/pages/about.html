@@ -2,40 +2,183 @@
 
 {% load static %}
 
-{% block title %}About the Scancer Project{% endblock title %}
+{% block title %}The Scancer Project{% endblock title %}
 
 {% block content %}
-<main class="container">
+<main class="container mb-3">
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8">
-      <h1>About This Project</h1>
-      <p class="lead">Scancer is a collaborative effort to increase access to the early detection of breast cancer.</p>
-      <p>Breast cancer is the most diagnosed cancer among women worldwide, accounting for 1 in 4 cancer cases. In 2020, there were an estimated 684,996 deaths from breast cancer, with a disproportionate number of these deaths occurring in low-resource settings.&nbsp;[1]</p>
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <h1>The Scancer Project</h1>
+      <p class="lead">Scancer aims to increase access to the early detection of breast cancer.</p>
+      <p>Breast cancer is the most diagnosed cancer among women worldwide. In 2020, there were an estimated 684,996 deaths from breast cancer. A disproportionate number of these deaths occurred in low-resource settings.&nbsp;[<a href="https://www.uicc.org/what-we-do/thematic-areas-work/breast-cancer">ref</a>]</p>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 col-lg-5 mb-3">
-      <img src="{% static 'images/about/top-cancer.png' %}" class="img-fluid img-thumbnail" alt="Breast cancer is the most diagnosed cancer among women worldwide.">
+    <div class="offset-xl-1 col-xl-5 offset-lg-2 col-lg-8 mb-3">
+      <a href="https://gco.iarc.fr/today/online-analysis-map?v=2020&mode=cancer&mode_population=continents&population=900&populations=900&key=asr&sex=2&cancer=39&type=0&statistic=5&prevalence=0&population_group=0&ages_group%5B%5D=0&ages_group%5B%5D=17&nb_items=10&group_cancer=0&include_nmsc=1&include_nmsc_other=1&projection=natural-earth&color_palette=default&map_scale=quantile&map_nb_colors=5&continent=0&show_ranking=0&rotate=%255B10%252C0%255D"><img src="{% static 'images/about/top-cancer.png' %}" class="img-fluid img-thumbnail" alt="Breast cancer is the most diagnosed cancer among women worldwide"></a>
     </div>
-    <div class="col-md-6 col-lg-5 mb-3">
-      <img src="{% static 'images/about/mortality-rates.png' %}" class="img-fluid img-thumbnail" alt="Estimated age-standardized mortality rates (World) in 2020, breast, females, all ages.">
+    <div class="col-xl-5 offset-lg-2 col-lg-8 offset-xl-0 mb-3">
+      <a href="https://gco.iarc.fr/today/online-analysis-map?v=2020&mode=population&mode_population=continents&population=900&populations=900&key=asr&sex=2&cancer=20&type=1&statistic=5&prevalence=0&population_group=0&ages_group%5B%5D=0&ages_group%5B%5D=17&nb_items=10&group_cancer=0&include_nmsc=1&include_nmsc_other=1&projection=natural-earth&color_palette=default&map_scale=quantile&map_nb_colors=5&continent=0&show_ranking=0&rotate=%255B10%252C0%255D"><img src="{% static 'images/about/mortality-rates.png' %}" class="img-fluid img-thumbnail" alt="Estimated age-standardized mortality rates (World) in 2020, breast, females, all ages"></a>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8">
-      <p>Survival rates for breast cancer are very high when the cancer is detected early and where treatment is available. Unfortunately, 50 to 80% of breast cancer cases are diagnosed at an advanced stage in many low- and middle-income countries, when the cancer is usually incurable.&nbsp;[1]</p>
-      <ul>
-        <li>Diagnosis involves many stages, including manual exams, mammograms, MRIs, biopsies …</li>
-        <li>Many of these things are hard to do, and can be sped up with computer vision assisting human experts</li>
-        <li>There exist many papers and models out there on bits and pieces of this, but no comprehensive solution (that we know of that) is clinically relevant</li>
-        <li>Here is how we have chosen to structure our solution: plan, philosophy</li>
-        <li>Some detailed notes and screenshots on what we have working so far, and pointers to GitHub repos</li>
-        <li>Where we are going next and how you can help</li>
-      </ul>
-      <h2>References</h2>
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <p>Survival rates for breast cancer are high when the cancer is detected early and where treatment is available. Unfortunately, 50 to 80% of breast cancer cases are diagnosed at an advanced stage in many low- and middle-income countries. By this point, the cancer is usually incurable.&nbsp;[<a href="https://www.uicc.org/what-we-do/thematic-areas-work/breast-cancer">ref</a>]</p>
+      <p>One of the primary reasons for this is that the tests and procedures used to diagnose this disease (such as <a href="https://en.wikipedia.org/wiki/Mammography">mammography</a> and <a href="https://en.wikipedia.org/wiki/Sentinel_lymph_node">lymph node biopsy</a>) require a lot of human expertise, which is very limited. Fortunately, most of these diagnostic procedures involve visual inspection of scans, which is ideally suited to the strengths of deep learning-based computer vision techniques.</p>
+      <p>There are many groups that realise this, and so there exist <a href="https://scholar.google.com/scholar?q=deep+learning+breast+cancer"><em>numerous</em> published papers</a> that describe how deep learning models <em>could</em> help improve different aspects of diagnosis. But there isn’t a central place (that we know of) that collects the best of these ideas into a comprehensive solution that is clinically relevant and accessible.</p>
+      <p><em>This is exactly what the Scancer project aims to do.</em></p>
+      <h2>How Do We Propose to Do This?</h2>
+      <p>We have surveyed the <a href="https://www.mayoclinic.org/diseases-conditions/breast-cancer/diagnosis-treatment/drc-20352475">specific procedures used to diagnose breast cancer</a>. The graphic that follows depicts these procedures, and highlights in purple the ones that that would <a href="https://www.nature.com/articles/s41746-020-00376-2">most benefit from computer vision</a>.</p>
+      <div class="text-center mb-1">
+        <img src="{% static 'images/about/cancer-diagnosis-deep-learning.svg' %}" class="img-fluid mb-3" alt="Specific procedures that are used to diagnose breast cancer">
+      </div>
+      <p>With this as the background, our proposed solution consists of two major parts:</p>
       <ol>
-        <li>Reference</li>
+        <li>First, we maintain a catalogue of the best deep learning vision models for these different parts of the diagnosis chain. These models will be pre-trained, optimised and stored in a model store (<a href="https://pytorch.org/serve/">TorchServe</a>).</li>
+        <li>
+          <p>Then, on top of this, we construct a software stack that makes these models accessible. The stack we are working on includes:</p>
+          <ul>
+            <li>An <a href="https://github.com/scancer-org/api">API</a> (powered by <a href="https://pytorch.org/serve/">TorchServe</a>) that serves these state-of-the-art computer vision models relevant to varying stages of breast cancer detection.</li>
+            <li>A <a href="https://github.com/scancer-org/webapp">web app</a> (written in <a href="https://www.djangoproject.com">Django</a>) that wraps this API and sits within a clinically-relevant setting, assisting human experts.</li>
+          </ul>
+        </li>
       </ol>
+      <p>This entire pipeline has been visualised in the following system-level diagram.</p>
+      <div class="text-center">
+        <img src="{% static 'images/about/scancer-system-diagram.svg' %}" class="img-fluid mb-3" alt="A system-level diagram of the Scancer technology stack">
+      </div>
+      <p>Since this is a really open-ended and long term effort, let’s take a closer look at what we have working so far.</p>
+      <h2>What Do We Have Working so Far?</h2>
+      <p>We decided to narrow our focus on just one diagnostic procedure and work out an end-to-end pipeline aound it. The procedure we chose is the <a href="https://camelyon17.grand-challenge.org/Background/">analysis of lymph node biopsy scans</a>. During a biopsy, a doctor uses a specialised needle to extract a sample of tissue from the suspicious area. These samples are sent to a lab to be analysed by a pathologist.</p>
+      <p>The reason we chose this procedure to focus on is:</p>
+      <ol>
+        <li>A biopsy is the only definitive way to diagnose breast cancer.&nbsp;[<a href="https://www.mayoclinic.org/diseases-conditions/breast-cancer/diagnosis-treatment/drc-20352475">ref</a>]</li>
+        <li>Manual pathological review of these samples are time-consuming and laborious.&nbsp;[<a href="https://arxiv.org/abs/1606.05718">ref</a>].</li>
+        <li>Deep learning techniques performing significantly better than human expert baselines.&nbsp;[<a href="https://pubmed.ncbi.nlm.nih.gov/29234806/">ref</a>]</li>
+        <li>There exists high quality data to train from, e.g. the <a href="https://camelyon16.grand-challenge.org">Camelyon 16 Grand Challenge</a>.</li>
+      </ol>
+      <p>Because the data from the Camelyon 16 challenge is really large (<a href="https://drive.google.com/drive/folders/0BzsdkU4jWx9Bb19WNndQTlUwb2M">of the order of 2 GB <em>per</em> slide scan</a>), our initial training efforts have focused on a simplified dataset derived from it. This is called the <a href="https://github.com/basveeling/pcam">PatchCamelyon (PCam)</a> dataset, and consists of 327,680 color images (96px &times; 96px) extracted from the full histopathologic scans of lymph node sections. We then proceeded to perform inference on some samples from the larger original data.</p>
+      <p>Our progress thus far is documented in the table below.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-lg-10 offset-md-1 mb-3">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Component</th>
+              <th scope="col">Technologies</th>
+              <th scope="col">What Can You Learn?</th>
+              <th scope="col">GitHub</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Trained classification model for the <a href="https://github.com/basveeling/pcam">Patch Cameleyon (PCam) dataset</a></td>
+              <td>PyTorch, Google Colab, H5py, Weights&nbsp;&&nbsp;Biasis</td>
+              <td>How to train your own cancer detection model.</td>
+              <td><a href="https://github.com/scancer-org/ml-pcam-classification">Repo</a></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td><a href="https://model-store.scancer.org/models">Scancer Model Store</a></td>
+              <td>TorchServe</td>
+              <td>How to package your detection model for serving, and how to contribute it to the Scancer model store.</td>
+              <td><a href="https://github.com/scancer-org/api/blob/main/docs/contributing.md">Docs</a></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td><a href="https://model-store.scancer.org/models">Scancer API</a></td>
+              <td>TorchServe</td>
+              <td>How to use the Scancer REST API as part of our primary web app or in your own app.</td>
+              <td><a href="https://github.com/scancer-org/api/blob/main/docs/using.md">Docs</a></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td><a href="https://scancer.org">Scancer Web App</a></td>
+              <td>Django, Django REST Framework, Postgresql, Celery, Redis, Gunicorn, Nginx</td>
+              <td>How to structure a Django web app for production use.</td>
+              <td><a href="https://github.com/scancer-org/webapp">Repo</a></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Offline inference to generate a heatmap on samples of the <a href="https://drive.google.com/drive/folders/0BzsdkU4jWx9Bb19WNndQTlUwb2M">Cameleyon 16 dataset</a></td>
+              <td>PyTorch, Google Colab, OpenSlide</td>
+              <td>How to slide a model trained on patches to perform inference on a whole slide image.</td>
+              <td><a href="https://github.com/scancer-org/ml-pcam-classification/blob/main/notebooks/10_WSI_Tumour_Prediction.ipynb">Notebook</a></td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>Scancer Setup Scripts</td>
+              <td>Ansible</td>
+              <td>How to setup your own production-ready Django web app wrapping a TorchServe API using reproducible scripts.</td>
+              <td><a href="https://github.com/scancer-org/setup">Repo</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <p class="mb-3">For a more visual indication of progress, here are some screenshots of the different components. The screenshots cover the functioning pipeline, as well as a web app prototype that aims to gather feedback from domain experts.</p>
+      <!-- TODO: In the future, add more interesting screenshots:
+                 4. Show high risk scans
+                 5. Show high risk patients
+      -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-xl-1 col-xl-5 offset-lg-2 col-lg-8 mb-3">
+      <div class="card">
+        <img src="{% static 'images/about/hyperparameter-tuning.png' %}" class="card-img-top" alt="Tuning hyperparameters for our PCam CNN model">
+        <div class="card-body">
+          <p class="card-text">Tuning hyperparameters for our <a href="https://github.com/scancer-org/ml-pcam-classification/blob/main/src/models/cnn_model.py">PCam CNN model</a>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5 offset-lg-2 col-lg-8 offset-xl-0 mb-3">
+      <div class="card">
+        <img src="{% static 'images/about/api-model-store.png' %}" class="card-img-top" alt="Seeing the model in the model store, and using the API for inference">
+        <div class="card-body">
+          <p class="card-text">Seeing the model in the model store, and using it as an API.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-xl-1 col-xl-7 offset-lg-2 col-lg-8 mb-3">
+      <div class="card">
+        <img src="{% static 'images/about/scan-detail.png' %}" class="card-img-top" alt="Visualisation of a Whole Slide Image (WSI) using a Google Maps style zoom interface">
+        <div class="card-body">
+          <p class="card-text">Visualisation of a Whole Slide Image (WSI) using a Google Maps style zoom interface.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 offset-lg-2 col-lg-8 offset-xl-0 mb-3">
+      <div class="card">
+        <img src="{% static 'images/about/scan-detail-heatmap.png' %}" class="card-img-top" alt="A heatmap of potentially cancerous tissue">
+        <div class="card-body">
+          <p class="card-text">An offline rendered heatmap to highlight potential regions with cancerous tissue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+      <h2 class="mt-3">Where We Are Going Next, and How You Can Help</h2>
+      <p>The project we have embarked on is really open-ended and long term. Thus far, we have a functioning ML pipeline, an example model, and a prototype web app that sits on top of it. We will continue to extend this app and underlying model until it is genuinely useful for histopathologists.</p>
+      <p><a href="https://github.com/scancer-org">Everything we’ve built is released open source</a> (MIT License) and <a href="https://github.com/scancer-org/setup">in a reproducible form</a>, so that anyone can learn from, use, and contribute to the effort. Going forward, we will encourage the community to contribute models and workflows for other diagnostic procedures.</p>
+      <p>In particular:</p>
+      <ul>
+        <li>Domain experts can help with labelling data, provide their own unique datasets, and  help us understand issues in their everyday work</li>
+        <li>Machine learning practitioners can help train even more robust models</li>
+        <li>Companies can help with compute budgets, etc.</li>
+      </ul>
+      <p>If you are interested in helping or finding out more, please <a href="{% url 'account_signup' %}" class="btn btn-primary btn-sm">Sign Up</a> or <a href="mailto:mail@harishnarayanan.org" class="btn btn-outline-primary btn-sm">Write to Us</a></p>
     </div>
   </div>
 </main>
