@@ -28,19 +28,25 @@
       <p>There are many groups that realise this, and so there exist <a href="https://scholar.google.com/scholar?q=deep+learning+breast+cancer"><em>numerous</em> published papers</a> that describe how deep learning models <em>could</em> help improve different aspects of diagnosis. But there isn’t a central place (that we know of) that collects the best of these ideas into a comprehensive solution that is clinically relevant and accessible.</p>
       <p><em>This is exactly what the Scancer project aims to do.</em></p>
       <h2>How Do We Propose to Do This?</h2>
-      <p>The <a href="https://www.mayoclinic.org/diseases-conditions/breast-cancer/diagnosis-treatment/drc-20352475">specific procedures that are used to diagnose breast cancer</a> are depicted in the following graphic. The ones that would <a href="https://www.nature.com/articles/s41746-020-00376-2">most benefit from computer vision</a> are denoted in purple.</p>
-      <div class="text-center">
+      <p>We have surveyed the <a href="https://www.mayoclinic.org/diseases-conditions/breast-cancer/diagnosis-treatment/drc-20352475">specific procedures used to diagnose breast cancer</a>. The graphic that follows depicts these procedures, and highlights in purple the ones that that would <a href="https://www.nature.com/articles/s41746-020-00376-2">most benefit from computer vision</a>.</p>
+      <div class="text-center mb-1">
         <img src="{% static 'images/about/cancer-diagnosis-deep-learning.svg' %}" class="img-fluid mb-3" alt="Specific procedures that are used to diagnose breast cancer">
       </div>
-      <p>The approach we have chosen relies on the following key components:</p>
+      <p>With this as the background, our proposed solution consists of two major parts:</p>
+      <ol>
+        <li>First, we maintain a catalogue of the best deep learning vision models for these different parts of the diagnosis chain. These models will be pre-trained, optimised and stored in a model store (<a href="https://pytorch.org/serve/">TorchServe</a>).</li>
+        <li>
+          <p>Then, on top of this, we construct a software stack that makes these models accessible. The software stack we are working on includes:</p>
+          <ul>
+            <li>An <a href="https://github.com/scancer-org/api">API</a> (powered by <a href="https://pytorch.org/serve/">TorchServe</a>) that serves these state-of-the-art computer vision models relevant to varying stages of breast cancer detection.</li>
+            <li>A <a href="https://github.com/scancer-org/webapp">web app</a> (written in <a href="https://www.djangoproject.com">Django</a>) that wraps this API and sits within a clinically-relevant setting, assisting human experts.</li>
+          </ul>
+        </li>
+      </ol>
+      <p>This entire pipeline has been visualised in the following system-level diagram.</p>
       <div class="text-center">
         <img src="{% static 'images/about/scancer-system-diagram.svg' %}" class="img-fluid mb-3" alt="A system-level diagram of the Scancer technology stack">
       </div>
-      <ol>
-        <li>A <a href="https://github.com/scancer-org/webapp">web app</a> (written in <a href="https://www.djangoproject.com">Django</a>) that sits within a clinically-relevant setting and improves human expert workflows.</li>
-        <li>This web app wraps an <a href="https://github.com/scancer-org/api">API</a> (powered by <a href="https://pytorch.org/serve/">TorchServe</a>) that serves up state-of-the-art computer vision models relevant to varying stages of breast cancer detection.</li>
-        <li>A well-maintained catalogue of the best deep learning vision models for different parts of the diagnosis chain (pretrained, optimised and ready for serving).</li>
-      </ol>
       <h2>What Do We Have Working so Far?</h2>
       <p>We decided to narrow our focus to just one diagnostic procedure to begin with: detection and classification of breast cancer metastasis in lymph nodes. Our goal was to build up the pipeline described above, and help pathologists make more rapid and accurate diagnoses.</p>
       <p class="text-danger">TODO: Something about the Camelyon dataset and the initial focus on Patch Camelyon. Maybe a diagram?</p>
