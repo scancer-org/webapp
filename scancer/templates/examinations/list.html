@@ -33,7 +33,7 @@
         <tr>
           <td><a href="{{ examination.get_absolute_url }}">{{ examination.date }}</a></td>
           <td>{{ examination.get_kind_display }}</td>
-          <td>{{ examination.patient.name }}</td>
+          <td><a href="{{ examination.patient.get_absolute_url }}">{{ examination.patient.name }}</a></td>
           <td>{{ examination.patient.age.years }} Years {{ examination.patient.age.months }} Months</td>
           <td>{{ examination.patient.get_sex_display }}</td>
           <td>{{ examination.patient.doctor }}</td>
