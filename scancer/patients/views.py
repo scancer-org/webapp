@@ -11,6 +11,13 @@ class PatientListView(LoginRequiredMixin, ListView):
     context_object_name = "patients"
     template_name = "patients/list.html"
 
+    def get_queryset(self):
+        risk = self.request.GET.get("risk")
+        if risk:
+            return Patient.objects.filter(risk=risk)
+        else:
+            return Patient.objects.all()
+
 
 class PatientDetailView(LoginRequiredMixin, DetailView):
 

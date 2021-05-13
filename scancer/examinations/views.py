@@ -30,6 +30,13 @@ class ExaminationListView(LoginRequiredMixin, ListView):
     context_object_name = "examinations"
     template_name = "examinations/list.html"
 
+    def get_queryset(self):
+        risk = self.request.GET.get("risk")
+        if risk:
+            return Examination.objects.filter(priority=risk)
+        else:
+            return Examination.objects.all()
+
 
 # The following is adapted from a demonstration Flask app in the
 # OpenSlide Python repository. Specifically:

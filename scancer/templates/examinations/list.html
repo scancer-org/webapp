@@ -7,10 +7,10 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">All Lymph Node Biopsies</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
-      <button type="button" class="btn btn-sm btn-outline-primary">
+      <a href="{% url 'examinations:list' %}?risk=high" class="btn btn-sm btn-outline-primary">
         <span data-feather="calendar"></span>
         Show High Risk
-      </button>
+      </a>
     </div>
   </div>
 

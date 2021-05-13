@@ -13,7 +13,7 @@
           <a class="nav-link dropdown-toggle {% if 'patients' in request.path %}active{% endif %}" href="#" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">Patients</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown1">
             <li><a class="dropdown-item" href="{% url 'patients:list' %}">All Patients</a></li>
-            <li><a class="dropdown-item" href="#">High Risk</a></li>
+            <li><a class="dropdown-item" href="{% url 'patients:list' %}?risk=high">High Risk</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
