@@ -1,8 +1,7 @@
 from io import BytesIO
 
-from PIL import Image, ImageOps
-import requests
 import openslide
+import requests
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
@@ -12,6 +11,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from openslide import open_slide
 from openslide.deepzoom import DeepZoomGenerator
+from PIL import Image, ImageOps
 
 from .models import Examination, Scan
 
@@ -95,8 +95,7 @@ def tile(request, pk, level, col, row):
     image = Image.open(buf)
     image2 = ImageOps.grayscale(image)
     r = requests.put(
-         "http://localhost:8080/predictions/pcam-classification",
-         data=buf.getvalue()
+        "http://localhost:8080/predictions/pcam-classification", data=buf.getvalue()
     )
     if r.text == "1":
         image3 = ImageOps.colorize(image2, (255, 0, 0), (255, 255, 255))
