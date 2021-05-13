@@ -7,14 +7,14 @@
 {% block content %}
 <main class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
       <h1>About the Scancer Project</h1>
       <p class="lead">Scancer aims to increase access to the early detection of breast cancer.</p>
       <p>Breast cancer is the most diagnosed cancer among women worldwide, accounting for 1 in 4 cancer cases. In 2020, there were an estimated 684,996 deaths from breast cancer. A disproportionate number of these deaths occurring in low-resource settings.&nbsp;[1]</p>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 col-lg-5 mb-3">
+    <div class="col-md-6 offset-lg-1 col-lg-5 mb-3">
       <img src="{% static 'images/about/top-cancer.png' %}" class="img-fluid img-thumbnail" alt="Breast cancer is the most diagnosed cancer among women worldwide.">
     </div>
     <div class="col-md-6 col-lg-5 mb-3">
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
       <p>Survival rates for breast cancer are high when the cancer is detected early and where treatment is available. Unfortunately, 50 to 80% of breast cancer cases are diagnosed at an advanced stage in many low- and middle-income countries. By this point, the cancer is usually incurable.&nbsp;[1]</p>
       <p>One of the primary reasons for this is that the tests and procedures used to diagnose this disease (such as <a href="https://en.wikipedia.org/wiki/Mammography">mammography</a> and <a href="https://en.wikipedia.org/wiki/Sentinel_lymph_node">lymph node biopsy</a>) require a lot of human expertise, which is very limited. Fortunately, most of these diagnostic procedures involve visual inspection of scans, which is ideally suited to the strengths of deep-learning-based computer vision techniques.</p>
       <p>The specific procedures that are used to diagnose breast cancer [2] are depicted in the following graphic. The ones that would most benefit from computer vision are denoted in purple. [3]</p>
@@ -48,7 +48,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 col-lg-10 mb-3">
+    <div class="col-md-12 col-lg-10 offset-md-1 mb-3">
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -102,7 +102,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-8">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
       <p>Here are a collection of screenshots from these different components.</p>
       <p class="text-danger">TODO: Insert some screenshots here. Something about the webapp serving two purposes: Working out the pipeline and prototype for gathering feedback on user-facing features.</p>
       <h2>Where We Are Going Next, and How You Can Help</h2>
