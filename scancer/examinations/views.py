@@ -1,6 +1,7 @@
 from io import BytesIO
 
 import openslide
+import requests
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
@@ -10,12 +11,13 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from openslide import open_slide
 from openslide.deepzoom import DeepZoomGenerator
+from PIL import Image, ImageOps
 
 from .models import Examination, Scan
 
 DEEPZOOM_SLIDE = None
 DEEPZOOM_FORMAT = "jpeg"
-DEEPZOOM_TILE_SIZE = 254
+DEEPZOOM_TILE_SIZE = 96
 DEEPZOOM_OVERLAP = 1
 DEEPZOOM_LIMIT_BOUNDS = True
 DEEPZOOM_TILE_QUALITY = 75
@@ -97,4 +99,15 @@ def tile(request, pk, level, col, row):
     tile = slide.get_tile(level, (col, row))
     buf = BytesIO()
     tile.save(buf, DEEPZOOM_FORMAT, quality=DEEPZOOM_TILE_QUALITY)
-    return HttpResponse(buf.getvalue(), content_type="image/jpeg")
+    image = Image.open(buf)
+    image2 = ImageOps.grayscale(image)
+    r = requests.put(
+        "http://localhost:8080/predictions/pcam-classification", data=buf.getvalue()
+    )
+    if r.text == "1":
+        image3 = ImageOps.colorize(image2, (255, 0, 0), (255, 255, 255))
+    else:
+        image3 = ImageOps.colorize(image2, (0, 255, 0), (255, 255, 255))
+    response = HttpResponse(content_type="image/jpeg")
+    image3.save(response, "JPEG")
+    return response
