@@ -2,13 +2,13 @@
 
 {% load static %}
 
-{% block title %}About the Scancer Project{% endblock title %}
+{% block title %}The Scancer Project{% endblock title %}
 
 {% block content %}
-<main class="container">
+<main class="container mb-3">
   <div class="row">
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
-      <h1>About the Scancer Project</h1>
+      <h1>The Scancer Project</h1>
       <p class="lead">Scancer aims to increase access to the early detection of breast cancer.</p>
       <p>Breast cancer is the most diagnosed cancer among women worldwide. In 2020, there were an estimated 684,996 deaths from breast cancer. A disproportionate number of these deaths occurred in low-resource settings.&nbsp;[<a href="https://www.uicc.org/what-we-do/thematic-areas-work/breast-cancer">ref</a>]</p>
     </div>
@@ -36,7 +36,7 @@
       <ol>
         <li>First, we maintain a catalogue of the best deep learning vision models for these different parts of the diagnosis chain. These models will be pre-trained, optimised and stored in a model store (<a href="https://pytorch.org/serve/">TorchServe</a>).</li>
         <li>
-          <p>Then, on top of this, we construct a software stack that makes these models accessible. The software stack we are working on includes:</p>
+          <p>Then, on top of this, we construct a software stack that makes these models accessible. The stack we are working on includes:</p>
           <ul>
             <li>An <a href="https://github.com/scancer-org/api">API</a> (powered by <a href="https://pytorch.org/serve/">TorchServe</a>) that serves these state-of-the-art computer vision models relevant to varying stages of breast cancer detection.</li>
             <li>A <a href="https://github.com/scancer-org/webapp">web app</a> (written in <a href="https://www.djangoproject.com">Django</a>) that wraps this API and sits within a clinically-relevant setting, assisting human experts.</li>
@@ -47,10 +47,18 @@
       <div class="text-center">
         <img src="{% static 'images/about/scancer-system-diagram.svg' %}" class="img-fluid mb-3" alt="A system-level diagram of the Scancer technology stack">
       </div>
+      <p>Since this is a really open-ended and long term effort, let’s take a closer look at what we have working so far.</p>
       <h2>What Do We Have Working so Far?</h2>
-      <p>We decided to narrow our focus to just one diagnostic procedure to begin with: detection and classification of breast cancer metastasis in lymph nodes. Our goal was to build up the pipeline described above, and help pathologists make more rapid and accurate diagnoses.</p>
-      <p class="text-danger">TODO: Something about the Camelyon dataset and the initial focus on Patch Camelyon. Maybe a diagram?</p>
-      <p>Our progress thus far is documented in the table below.</p>
+      <p>We decided to narrow our focus on just one diagnostic procedure and work out an end-to-end pipeline aound it. The procedure we chose is the <a href="https://camelyon17.grand-challenge.org/Background/">analysis of lymph node biopsy scans</a>. During a biopsy, a doctor uses a specialised needle to extract a sample of tissue from the suspicious area. These samples are sent to a lab to be analysed by a pathologist.</p>
+      <p>The reason we chose this procedure to focus on is:</p>
+      <ol>
+        <li>A biopsy is the only definitive way to diagnose breast cancer.&nbsp;[<a href="https://www.mayoclinic.org/diseases-conditions/breast-cancer/diagnosis-treatment/drc-20352475">ref</a>]</li>
+        <li>Manual pathological review of these samples are time-consuming and laborious.&nbsp;[<a href="https://arxiv.org/abs/1606.05718">ref</a>].</li>
+        <li>Deep learning techniques performing significantly better than human expert baselines.&nbsp;[<a href="https://pubmed.ncbi.nlm.nih.gov/29234806/">ref</a>]</li>
+        <li>There exists high quality data to train from, e.g. the <a href="https://camelyon16.grand-challenge.org">Camelyon 16 Grand Challenge</a>.</li>
+      </ol>
+      <p>Because the data from the Camelyon 16 challenge is really large (<a href="https://drive.google.com/drive/folders/0BzsdkU4jWx9Bb19WNndQTlUwb2M">of the order of 2 GB <em>per</em> slide scan</a>), our initial training efforts have focused on a simplified dataset derived from it. This is called the <a href="https://github.com/basveeling/pcam">PatchCamelyon (PCam)</a> dataset, and consists of 327,680 color images (96px &times; 96px) extracted from the full histopathologic scans of lymph node sections. We then proceeded to perform inference on some samples from the larger original data.</p>
+      <p>Our progress thus far is documented in the table below and the screenshots that follow.</p>
     </div>
   </div>
   <div class="row">
@@ -97,7 +105,14 @@
             </tr>
             <tr>
               <th scope="row">5</th>
-              <td>Scancer Stack Setup Scripts</td>
+              <td>Offline inference to generate a heatmap on samples of the <a href="https://drive.google.com/drive/folders/0BzsdkU4jWx9Bb19WNndQTlUwb2M">Cameleyon 16 dataset</a></td>
+              <td>PyTorch, Google Colab, OpenSlide</td>
+              <td>How to slide a model trained on patches to perform inference on a whole slide image.</td>
+              <td><a href="https://github.com/scancer-org/ml-pcam-classification/blob/main/notebooks/10_WSI_Tumour_Prediction.ipynb">Notebook</a></td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>Scancer Setup Scripts</td>
               <td>Ansible</td>
               <td>How to setup your own production-ready Django web app wrapping a TorchServe API using reproducible scripts.</td>
               <td><a href="https://github.com/scancer-org/setup">Repo</a></td>
@@ -120,10 +135,6 @@
         <li>Machine learning practitioners can help train even more robust models</li>
         <li>Companies can help with compute budgets, etc.</li>
       </ul>
-      <h2>References</h2>
-      <ol>
-        <li>https://camelyon17.grand-challenge.org/Background/</li>
-      </ol>
     </div>
   </div>
 </main>
