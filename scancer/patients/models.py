@@ -41,4 +41,9 @@ class Patient(models.Model):
     @property
     def last_examination(self):
         "Return the last examination for a patient"
-        return self.examination_set.last()
+        return self.examination_set.order_by('date').last()
+
+    @property
+    def ordered_examination_set(self):
+        "Return all examinations for a patient, ordered by date"
+        return self.examination_set.order_by('date')
