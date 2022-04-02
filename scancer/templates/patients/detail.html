@@ -42,7 +42,7 @@
               <span class="badge bg-{{ patient.risk_colour }} {% if not patient.risk %}text-secondary{% endif %}">{% if patient.risk %}{{ patient.get_risk_display }}{% else %}Unidentified{% endif %}</span>
             </dd>
           </dl>
-          <a class="btn btn-primary disabled" href="">Book Next Appointment</a>
+          <a class="btn btn-primary" href="#">Book Next Appointment</a>
         </div>
         <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
           <div>
@@ -55,7 +55,7 @@
     <div class="col-md-9">
       <div class="container-fluid py-4">
         <div class="row">
-          {% for examination in patient.examination_set.all %}
+          {% for examination in patient.ordered_examination_set.all %}
           <div class="col col-12 col-md-6 col-lg-4">
             <div class="card shadow-sm">
               <div class="card-body">
